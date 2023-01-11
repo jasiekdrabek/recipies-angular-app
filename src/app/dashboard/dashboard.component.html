@@ -1,0 +1,6 @@
+<h2>Top recipies</h2>
+<div class="recipies-menu">
+    <a *ngFor="let recipie of recipies" routerLink="/detail/{{recipie.id}}">
+            {{recipie.name}}
+    </a>
+</div>

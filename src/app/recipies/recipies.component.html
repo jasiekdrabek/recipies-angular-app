@@ -1,0 +1,9 @@
+<h2>My reciepies</h2>
+<ul class="recipies">
+  <li *ngFor="let recipie of recipies">
+    <a routerLink="/detail/{{recipie.id}}">
+      <span class="badge">{{ recipie.id }}</span>
+      <span class="name">{{ recipie.name }}</span>
+    </a>
+  </li>
+</ul>
