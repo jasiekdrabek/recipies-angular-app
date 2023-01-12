@@ -1,9 +1,9 @@
 <h2>My reciepies</h2>
 <ul class="folders">
   <a
-  *ngIf="folder.parent != null"
+  *ngIf="parent.id != folder.id"
     class="parent"
-    routerLink="/folder/{{ folder.parent }}"
+    routerLink="/folder/{{ parent.id}}"
   >
     <span class="badge"
       ><img
@@ -12,7 +12,7 @@
           'https://www.iconpacks.net/icons/2/free-folder-icon-1484-thumb.png'
         "
     /></span>
-    <span class="name"> {{ folder.parent }}</span>
+    <span class="name"> {{ parent.name }}</span>
   </a>
   <li *ngFor="let element of folder.folders">
     <a routerLink="/folder/{{ element.id }}">

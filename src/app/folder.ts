@@ -1,7 +1,7 @@
 import { Recipie } from './recipie';
 
 export interface Folder {
-  id?: number;
+  id: number;
   name?: string;
   parent?: number;
   folders?: Folder[];

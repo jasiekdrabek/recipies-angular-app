@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { RecipieService } from '../recipie.service';
 import {Recipie} from '../recipie'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-recipie-detail',
@@ -29,5 +30,11 @@ getRecipie(): void {
   this.recipieService.getRecipie(id)
     .subscribe(recipie => this.recipie = recipie);
 }
+save(): void {
+  if (this.recipie) {
+    this.recipieService.updateRecipie(this.recipie).subscribe();
+  }
+}
+
 @Input() recipie? : Recipie
 }
