@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { RecipieDetailComponent } from './recipie-detail/recipie-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FoldersComponent } from './folders/folders.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RecipiesComponent,
     RecipieDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    FoldersComponent
   ],
   imports: [
     BrowserModule,

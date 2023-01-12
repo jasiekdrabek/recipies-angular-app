@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipieService } from '../recipie.service';
 import { Recipie } from '../recipie';
-import { MessageService } from '../message.service';
+
 
 
 @Component({
@@ -10,7 +10,7 @@ import { MessageService } from '../message.service';
   styleUrls: ['./recipies.component.css'],
 })
 export class RecipiesComponent implements OnInit{
-  constructor(private recipieService: RecipieService, private  messageService: MessageService){}
+  constructor(private recipieService: RecipieService){}
   getRecipies():void{
     this.recipieService.getRecipies().subscribe(recipies => this.recipies = recipies);
   } 
