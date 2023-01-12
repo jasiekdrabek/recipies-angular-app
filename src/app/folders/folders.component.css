@@ -65,4 +65,10 @@
   .folders .name {
     position: relative;
     bottom: 15px;
+    background-color: #EEE;
+  }
+
+  .parent{
+    position: relative;
+    right: 10px;
   }

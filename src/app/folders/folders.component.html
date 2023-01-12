@@ -1,18 +1,41 @@
 <h2>My reciepies</h2>
-<h4 routerLink="/folder/{{folder.parent}}"> {{folder.parent}}</h4>
 <ul class="folders">
+  <a
+  *ngIf="folder.parent != null"
+    class="parent"
+    routerLink="/folder/{{ folder.parent }}"
+  >
+    <span class="badge"
+      ><img
+        class="image"
+        [src]="
+          'https://www.iconpacks.net/icons/2/free-folder-icon-1484-thumb.png'
+        "
+    /></span>
+    <span class="name"> {{ folder.parent }}</span>
+  </a>
   <li *ngFor="let element of folder.folders">
-    
-      <a routerLink="/folder/{{ element.id }}">
-        <span class="badge"><img class="image" [src]="'https://www.iconpacks.net/icons/2/free-folder-icon-1484-thumb.png'"></span>
-        <span class="name">{{ element.name }}</span>
-      </a>
-  </li>
-  <li *ngFor="let element of folder.recipies">
-    
-    <a routerLink="/detail/{{ element.id }}">
-      <span class="badge"><img class="image" [src]="'https://www.iconpacks.net/icons/2/free-file-icon-1453-thumb.png'"></span>
+    <a routerLink="/folder/{{ element.id }}">
+      <span class="badge"
+        ><img
+          class="image"
+          [src]="
+            'https://www.iconpacks.net/icons/2/free-folder-icon-1484-thumb.png'
+          "
+      /></span>
       <span class="name">{{ element.name }}</span>
     </a>
-</li>
+  </li>
+  <li *ngFor="let element of folder.recipies">
+    <a routerLink="/detail/{{ element.id }}">
+      <span class="badge"
+        ><img
+          class="image"
+          [src]="
+            'https://www.iconpacks.net/icons/2/free-file-icon-1453-thumb.png'
+          "
+      /></span>
+      <span class="name">{{ element.name }}</span>
+    </a>
+  </li>
 </ul>
