@@ -47,7 +47,6 @@ export class FoldersComponent implements OnInit {
       this.folderService
         .getFolder(this.folder.parent)
         .subscribe((folder) => (this.parent = folder));
-        console.log(folder)
     });
   }
 
@@ -70,8 +69,6 @@ export class FoldersComponent implements OnInit {
         this.folderService
           .updateFolder(this.folder)
           .subscribe((folder) => (this.folder = folder));
-          console.log(this.folder)
-          console.log(this.parent.folders)
         this.getFolder();
       });
   }
@@ -94,44 +91,45 @@ export class FoldersComponent implements OnInit {
       } as Folder)
       .subscribe((folder: Folder) => {
         this.folder.folders?.push(folder);
-        console.log(folder)
         this.folderService
           .updateFolder(this.folder)
           .subscribe((folder) => (this.folder = folder));
-        this.getFolder();
-        console.log(this.folder)
+        this.getFolder();  
       });
   }
-  deleteRecipie(recipie: Recipie): void {
+  deleteRecipie(recipie: Recipie,folder: Folder = this.folder): void {
     this.recipieService.deleteRecipie(recipie.id).subscribe(() => {
-      this.folder.recipies = this.folder.recipies?.filter(
-        (r) => r.name !== recipie.name
+      folder.recipies = folder.recipies?.filter(
+        (r) => r.id !== recipie.id
       );
       this.folderService
-        .updateFolder(this.folder)
-        .subscribe((folder) => (this.folder = folder));
+        .updateFolder(folder)
+        .subscribe((f) => (folder = f));
       this.getFolder();
     });
   }
-  deleteFolder(folder: Folder): void {
+  deleteFolder(id: number): void {
+    this.folderService.getFolder(id).subscribe((folder)=>{
     for (var i=0; i< folder.recipies.length; i++){
-      this.deleteRecipie(folder.recipies[i])
+      this.deleteRecipie(folder.recipies[i],folder)
     }
-    console.log(this.folder.folders)
-    console.log(folder)
+
     for(var i=0;i< folder.folders.length;i++){
-      this.deleteFolder(folder.folders[i])
+      this.deleteFolder(folder.folders[i].id)
     }
     this.folderService.deleteFolder(folder.id).subscribe(() => {
       for (var i = 0; i < this.folder.folders.length; i++) {
         if (this.folder.folders[i].id === folder.id) {
           this.folder.folders.splice(i, 1);
-        }
-      }
+        
       this.folderService
         .updateFolder(this.folder)
         .subscribe((folder) => (this.folder = folder));
       this.getFolder();
+    }
+  }
+    }
+    )
     });
   }
 }

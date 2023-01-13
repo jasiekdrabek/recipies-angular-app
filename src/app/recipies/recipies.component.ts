@@ -25,12 +25,12 @@ export class RecipiesComponent implements OnInit {
   recipies: Recipie[] = [];
   deleteRecipie(recipie: Recipie): void {
     this.recipieService.deleteRecipie(recipie.id).subscribe(() => {
-      this.recipies = this.recipies?.filter((r) => r.name !== recipie.name);
+      this.recipies = this.recipies?.filter((r) => r.id !== recipie.id);
       this.folderService
         .getFolder(recipie.parent)
         .subscribe((folder: Folder) => {
           folder.recipies = folder.recipies?.filter(
-            (r) => r.name !== recipie.name
+            (r) => r.id!== recipie.id
           );
           this.folderService.updateFolder(folder).subscribe();
         });

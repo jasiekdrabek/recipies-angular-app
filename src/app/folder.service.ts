@@ -31,7 +31,7 @@ export class FolderService {
 
   updateFolder(folder: Folder): Observable<any> {    
     return this.http.put(this.urlFolder, folder, this.httpOptions).pipe(
-      tap(_ => this.messageService.add(`updated  ${folder.name}`)),
+      tap(_ => this.messageService.add(`updated  ${folder?.name}`)),
       catchError(this.handleError<any>('update folder'))
     );
   }
