@@ -4,6 +4,6 @@ export interface Folder {
   id: number;
   name?: string;
   parent?: number;
-  folders?: Folder[];
-  recipies?: Recipie[];
+  folders: Folder[];
+  recipies: Recipie[];
 }

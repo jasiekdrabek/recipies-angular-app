@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { Folder } from './folder';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class RecipieService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  getRecipies() : Observable< Recipie[]>{    
+  getRecipies() : Observable< Recipie[] >{    
     return this.http.get<Recipie[]>(this.urlRecipie).pipe(tap(_ =>this.messageService.add('fetched recipies')) ,catchError(this.handleError<Recipie[]>('get recipie',[])));
   }
   getRecipie(id:number) : Observable<Recipie>{
@@ -24,8 +25,20 @@ export class RecipieService {
   }
   updateRecipie(recipie: Recipie): Observable<any> {
     return this.http.put(this.urlRecipie, recipie, this.httpOptions).pipe(
-      tap(_ => this.messageService.add(`updated  id=${recipie.name}`)),
+      tap(_ => this.messageService.add(`updated  ${recipie.name}`)),
       catchError(this.handleError<any>('updateRecipie'))
+    );
+  }
+  addRecipie(folder:Recipie){ 
+    
+    return this.http.post<Recipie>(this.urlRecipie, folder, this.httpOptions).pipe(tap((newRecipie: Recipie) => this.messageService.add(`added recipie ${newRecipie.name}`)),
+    catchError(this.handleError<Recipie>('add recipie')))
+  }
+  deleteRecipie(id: number): Observable<Recipie>{
+    const url = this.urlRecipie + `/${id}`;
+    return this.http.delete<Recipie>(url, this.httpOptions).pipe(
+      tap(_ => this.messageService.add(`deleted recipie ${id}`)),
+      catchError(this.handleError<Recipie>('deleteRecipie'))
     );
   }
   private handleError<T>(operation = 'operation', result?: T) {

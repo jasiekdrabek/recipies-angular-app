@@ -13,13 +13,37 @@ export class FolderService {
 
   constructor(private messageService: MessageService, private http : HttpClient) { }
   private urlFolder = 'api/folders'
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   getFolder(id:number | undefined) : Observable<Folder>{
     
     const url = this.urlFolder + `/${id}`;
-    return this.http.get<Folder>(url).pipe(tap(_ =>this.messageService.add(`fetched recipie ${_.name}`)) ,catchError(this.handleError<Folder>('get recipie',)));
+    return this.http.get<Folder>(url).pipe(tap(_ =>this.messageService.add(`fetched folder ${_.name}`)) ,catchError(this.handleError<Folder>('get recipie',)));
   }
   
+  addFolder(folder:Folder){ 
+    
+    return this.http.post<Folder>(this.urlFolder, folder, this.httpOptions).pipe(tap((newFolder: Folder) => this.messageService.add(`added folder ${newFolder.name}`)),
+    catchError(this.handleError<Folder>('add folder')))
+  }
+
+  updateFolder(folder: Folder): Observable<any> {    
+    return this.http.put(this.urlFolder, folder, this.httpOptions).pipe(
+      tap(_ => this.messageService.add(`updated  ${folder.name}`)),
+      catchError(this.handleError<any>('update folder'))
+    );
+  }
+
+  deleteFolder(id: number): Observable<Folder>{
+    const url = this.urlFolder + `/${id}`;
+    return this.http.delete<Folder>(url, this.httpOptions).pipe(
+      tap(_ => this.messageService.add(`deleted folder ${id}`)),
+      catchError(this.handleError<Folder>('deleteFolder'))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
   

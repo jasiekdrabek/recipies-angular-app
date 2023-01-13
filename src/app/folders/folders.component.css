@@ -66,9 +66,39 @@
     position: relative;
     bottom: 15px;
     background-color: #EEE;
+    width: 140px;
+    height: max-content;
   }
 
   .parent{
     position: relative;
     right: 10px;
+  }
+
+  .form{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    bottom: 70px;    
+    max-width: 250px;
+    width: 15em;
+    margin-left: 7%;
+    padding: 0;
+  }
+
+  .grid{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+  }
+
+  button.delete {
+    position: absolute;
+    left: 220px;
+    top: 5px;
+    background-color: none;
+    color:  red;
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 1px 10px 3px 10px;
   }

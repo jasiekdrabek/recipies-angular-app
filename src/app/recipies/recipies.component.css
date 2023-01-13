@@ -66,3 +66,14 @@
   position: relative;
   bottom: 15px;
 }
+
+button.delete {
+  position: absolute;
+  left: 220px;
+  top: 5px;
+  background-color: none;
+  color:  red;
+  font-size: 1.1rem;
+  margin: 0;
+  padding: 1px 10px 3px 10px;
+}
