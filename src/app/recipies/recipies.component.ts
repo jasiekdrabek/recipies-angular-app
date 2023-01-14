@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RecipieService } from '../recipie.service';
 import { Recipie } from '../recipie';
 import { FolderService } from '../folder.service';
@@ -21,7 +21,10 @@ export class RecipiesComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getRecipies();
+    RecipiesComponent.term = '';
   }
+  public static term : string
+  public classReference = RecipiesComponent;
   recipies: Recipie[] = [];
   deleteRecipie(recipie: Recipie): void {
     this.recipieService.deleteRecipie(recipie.id).subscribe(() => {

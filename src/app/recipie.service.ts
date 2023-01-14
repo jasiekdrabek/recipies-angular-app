@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Folder } from './folder';
+
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +41,19 @@ export class RecipieService {
       catchError(this.handleError<Recipie>('deleteRecipie'))
     );
   }
+  searchRecipies(term: string): Observable<Recipie[]> {
+    if (!term.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+    return this.http.get<Recipie[]>(`${this.urlRecipie}/?name=${term}`).pipe(
+      tap(x => x.length ?
+        this.messageService.add(`found recipies matching "${term}"`) :
+        this.messageService.add(`no recipies matching "${term}"`)),
+      catchError(this.handleError<Recipie[]>('searchRecipies', []))
+    );
+  }  
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
   

@@ -1,5 +1,6 @@
 <h2>My reciepies</h2>
-<ul class="recipies">
+<app-recipie-search></app-recipie-search>
+<ul *ngIf="classReference.term === ''" class="recipies">
   <li *ngFor="let recipie of recipies">
     <a routerLink="/detail/{{recipie.id}}">
       <span class="badge"><img class="image" [src]="'https://www.iconpacks.net/icons/2/free-file-icon-1453-thumb.png'"></span>
