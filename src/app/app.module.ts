@@ -11,6 +11,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FoldersComponent } from './folders/folders.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { RecipieSearchComponent } from './recipie-search/recipie-search.component';
+import { InFolderSearchComponent } from './in-folder-search/in-folder-search.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { InMemoryDataService } from './in-memory-data.service';
     RecipieDetailComponent,
     MessagesComponent,
     DashboardComponent,
-    FoldersComponent
+    FoldersComponent,
+    RecipieSearchComponent,
+    InFolderSearchComponent
   ],
   imports: [
     BrowserModule,

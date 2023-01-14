@@ -1,6 +1,8 @@
 <h2>My reciepies</h2>
 <div class="grid">
-  <ul class="folders">
+  <div>
+  <app-in-folder-search></app-in-folder-search>
+  <ul *ngIf="classReference.term ===''" class="folders">
     <a
       *ngIf="parent.id != folder?.id"
       class="parent"
@@ -56,6 +58,7 @@
       </button>
     </li>
   </ul>
+  </div>
   <div class="form">
     <h2>Dodaj przepis w tym folderze</h2>
     <label for="new-recipie">Nazwa przepisu: </label>

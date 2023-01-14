@@ -3,8 +3,9 @@ import { Folder } from './folder';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, filter, map, tap } from 'rxjs/operators';
 import { Recipie } from './recipie';
+import { FoldersComponent } from './folders/folders.component';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,31 @@ export class FolderService {
     return this.http.delete<Folder>(url, this.httpOptions).pipe(
       tap(_ => this.messageService.add(`deleted folder ${id}`)),
       catchError(this.handleError<Folder>('deleteFolder'))
+    );
+  }
+
+  searchInFolderForFolders(term: string): Observable< Folder[] > {
+    if (!term.trim()) {
+      return of([]);
+    }
+    const res =  this.http.get< Folder[]>(`${this.urlFolder}/?name=${term}&parent=${FoldersComponent.folderId}`).pipe(
+      tap(x => x.length ?
+        this.messageService.add(`found folders matching "${term}"`) :
+        this.messageService.add(`no folders matching "${term}"`)),
+      catchError(this.handleError< Folder[]>('searchInFolderForFolders', []))
+    );
+    console.log(res)
+    return res;
+  }
+  searchInFolderForRecipies(term: string): Observable<Recipie[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+    return this.http.get<Recipie[]>(`api/recipies/?name=${term}&parent=${FoldersComponent.folderId}`).pipe(      
+      tap(x => x.length ?
+        this.messageService.add(`found recipies matching "${term}"`) :
+        this.messageService.add(`no recipies matching "${term}"`)),
+      catchError(this.handleError<Recipie[] >('searchInFolderForRecipies', []))
     );
   }
 

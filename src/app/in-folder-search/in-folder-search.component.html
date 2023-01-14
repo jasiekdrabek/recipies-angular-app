@@ -1,0 +1,32 @@
+<div id="search-component">
+  <label for="search-box">Search</label>
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+  <ul class="search">
+    <li *ngFor="let folder of folders$ | async">
+      <a routerLink="/folder/{{ folder.id }}">
+        <span class="badge"
+          ><img
+            class="image"
+            [src]="
+              'https://www.iconpacks.net/icons/2/free-folder-icon-1484-thumb.png'
+            "
+        /></span>
+        <span class="name">{{ folder.name }}</span>
+      </a>
+    </li>
+  </ul>
+  <ul class="search">
+    <li *ngFor="let recipie of recipies$ | async">
+      <a routerLink="/detail/{{ recipie.id }}">
+        <span class="badge"
+          ><img
+            class="image"
+            [src]="
+              'https://www.iconpacks.net/icons/2/free-file-icon-1453-thumb.png'
+            "
+        /></span>
+        <span class="name">{{ recipie.name }}</span>
+      </a>
+    </li>
+  </ul>
+</div>

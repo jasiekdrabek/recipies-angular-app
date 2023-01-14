@@ -23,6 +23,9 @@ export class FoldersComponent implements OnInit {
     folders: [],
     recipies:[]
   };
+  public static folderId : number;
+  public static term : string;
+  public classReference = FoldersComponent;
   constructor(
     private folderService: FolderService,
     private recipieService: RecipieService,
@@ -35,6 +38,7 @@ export class FoldersComponent implements OnInit {
     };
   }
   ngOnInit(): void {
+    FoldersComponent.term = '';
     this.getFolder();
   }
 
@@ -44,6 +48,7 @@ export class FoldersComponent implements OnInit {
     });
     this.folderService.getFolder(this.id).subscribe((folder) => {
       this.folder = folder;
+      FoldersComponent.folderId = this.folder.id;
       this.folderService
         .getFolder(this.folder.parent)
         .subscribe((folder) => (this.parent = folder));
