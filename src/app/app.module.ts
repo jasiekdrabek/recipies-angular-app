@@ -23,18 +23,18 @@ import { InFolderSearchComponent } from './in-folder-search/in-folder-search.com
     DashboardComponent,
     FoldersComponent,
     RecipieSearchComponent,
-    InFolderSearchComponent
+    InFolderSearchComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+      dataEncapsulation: false,
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

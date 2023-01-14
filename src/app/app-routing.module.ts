@@ -6,15 +6,15 @@ import { RecipieDetailComponent } from './recipie-detail/recipie-detail.componen
 import { FoldersComponent } from './folders/folders.component';
 
 const routes: Routes = [
-  {path: 'recipies',component: RecipiesComponent},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'detail/:id', component: RecipieDetailComponent},
-  {path:'folder/:id',component:FoldersComponent},
+  { path: 'recipies', component: RecipiesComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'detail/:id', component: RecipieDetailComponent },
+  { path: 'folder/:id', component: FoldersComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -2,17 +2,23 @@
 <app-recipie-search></app-recipie-search>
 <ul *ngIf="classReference.term === ''" class="recipies">
   <li *ngFor="let recipie of recipies">
-    <a routerLink="/detail/{{recipie.id}}">
-      <span class="badge"><img class="image" [src]="'https://www.iconpacks.net/icons/2/free-file-icon-1453-thumb.png'"></span>
+    <a routerLink="/detail/{{ recipie.id }}">
+      <span class="badge"
+        ><img
+          class="image"
+          [src]="
+            'https://www.iconpacks.net/icons/2/free-file-icon-1453-thumb.png'
+          "
+      /></span>
       <span class="name">{{ recipie.name }}</span>
     </a>
     <button
-        type="button"
-        class="delete"
-        title="delete recipie"
-        (click)="deleteRecipie(recipie)"
-      >
-        x
-      </button>
+      type="button"
+      class="delete"
+      title="delete recipie"
+      (click)="deleteRecipie(recipie)"
+    >
+      x
+    </button>
   </li>
 </ul>

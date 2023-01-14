@@ -14,27 +14,29 @@ export class RecipiesComponent implements OnInit {
     private recipieService: RecipieService,
     private folderService: FolderService
   ) {}
+
   getRecipies(): void {
     this.recipieService
       .getRecipies()
       .subscribe((recipies) => (this.recipies = recipies));
   }
+
   ngOnInit(): void {
     this.getRecipies();
     RecipiesComponent.term = '';
   }
-  public static term : string
+
+  public static term: string;
   public classReference = RecipiesComponent;
   recipies: Recipie[] = [];
+
   deleteRecipie(recipie: Recipie): void {
     this.recipieService.deleteRecipie(recipie.id).subscribe(() => {
       this.recipies = this.recipies?.filter((r) => r.id !== recipie.id);
       this.folderService
         .getFolder(recipie.parent)
         .subscribe((folder: Folder) => {
-          folder.recipies = folder.recipies?.filter(
-            (r) => r.id!== recipie.id
-          );
+          folder.recipies = folder.recipies?.filter((r) => r.id !== recipie.id);
           this.folderService.updateFolder(folder).subscribe();
         });
     });

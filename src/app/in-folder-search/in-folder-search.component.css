@@ -1,99 +1,98 @@
 /* RecipiesComponent's private CSS styles */
 .search {
-    margin: 0 0 2em 0;
-    list-style-type: none;
-    padding: 0;
-    width: 15em;
-  }
-  .search li {
-    position: relative;
-    cursor: pointer;
-  }
-  
-  .search li:hover {
-    left: .1em;
-  }
-  
-  .search-recipies a {
-    color: #333;
-    text-decoration: none;
-    background-color: #EEE;
-    margin: .5em;
-    padding: .3em 0;
-    height: 1.6em;
-    border-radius: 4px;
-    display: block;
-    width: 100%;
-  }
-  
-  .search a:hover {
-    color: #2c3a41;
-    background-color: #e6e6e6;
-  }
-  
-  .search a:active {
-    background-color: #525252;
-    color: #fafafa;
-  }
-  
-  .search .badge {
-    display: inline-block;
-    font-size: small;
-    color: white;
-    padding: 0.8em 0.7em 0 0.7em;
-    background-color: #cad0d6;
-    line-height: 1em;
-    position: relative;
-    left: -1px;
-    top: -4px;
-    height: 1.8em;
-    min-width: 16px;
-    text-align: right;
-    margin-right: .8em;
-    border-radius: 4px 0 0 4px;
-  }
-  
-  .image{
-    position: relative;
-    border: none;
-    left: -1px;
-    top: -4px;
-    height: 1.8em;
-    min-width: 16px;
-  }
-  
-  .search  .name {
-    position: relative;
-    bottom: 15px;
-  }
-  
-  button.delete {
-    position: absolute;
-    left: 220px;
-    top: 5px;
-    background-color: none;
-    color:  red;
-    font-size: 1.1rem;
-    margin: 0;
-    padding: 1px 10px 3px 10px;
-  }
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 15em;
+}
+.search li {
+  position: relative;
+  cursor: pointer;
+}
 
-  label {
-    display: block;
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-top: 1rem;
-    margin-bottom: .5rem;
-  
-  }
-  input {
-    padding: .5rem;
-    width: 100%;
-    max-width: 200px;
-    box-sizing: border-box;
-    display: block;
-  }
-  
-  input:focus {
-    outline: #336699 auto 1px;
-  }
+.search li:hover {
+  left: 0.1em;
+}
+
+.search-recipies a {
+  color: #333;
+  text-decoration: none;
+  background-color: #eee;
+  margin: 0.5em;
+  padding: 0.3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+}
+
+.search a:hover {
+  color: #2c3a41;
+  background-color: #e6e6e6;
+}
+
+.search a:active {
+  background-color: #525252;
+  color: #fafafa;
+}
+
+.search .badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0 0.7em;
+  background-color: #cad0d6;
+  line-height: 1em;
+  position: relative;
+  left: -1px;
+  top: -4px;
+  height: 1.8em;
+  min-width: 16px;
+  text-align: right;
+  margin-right: 0.8em;
+  border-radius: 4px 0 0 4px;
+}
+
+.image {
+  position: relative;
+  border: none;
+  left: -1px;
+  top: -4px;
+  height: 1.8em;
+  min-width: 16px;
+}
+
+.search .name {
+  position: relative;
+  bottom: 15px;
+}
+
+button.delete {
+  position: absolute;
+  left: 220px;
+  top: 5px;
+  background-color: none;
+  color: red;
+  font-size: 1.1rem;
+  margin: 0;
+  padding: 1px 10px 3px 10px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+input {
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 200px;
+  box-sizing: border-box;
+  display: block;
+}
+
+input:focus {
+  outline: #336699 auto 1px;
+}

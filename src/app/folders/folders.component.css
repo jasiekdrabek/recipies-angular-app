@@ -5,6 +5,7 @@
   padding: 0;
   width: 15em;
 }
+
 .folders li {
   position: relative;
   cursor: pointer;

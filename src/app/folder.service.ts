@@ -8,80 +8,100 @@ import { Recipie } from './recipie';
 import { FoldersComponent } from './folders/folders.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FolderService {
-
-  constructor(private messageService: MessageService, private http : HttpClient) { }
-  private urlFolder = 'api/folders'
+  constructor(
+    private messageService: MessageService,
+    private http: HttpClient
+  ) {}
+  private urlFolder = 'api/folders';
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  getFolder(id:number | undefined) : Observable<Folder>{
-    
+  getFolder(id: number | undefined): Observable<Folder> {
     const url = this.urlFolder + `/${id}`;
-    return this.http.get<Folder>(url).pipe(tap(_ =>this.messageService.add(`fetched folder ${_.name}`)) ,catchError(this.handleError<Folder>('get recipie',)));
-  }
-  
-  addFolder(folder:Folder){ 
-    
-    return this.http.post<Folder>(this.urlFolder, folder, this.httpOptions).pipe(tap((newFolder: Folder) => this.messageService.add(`added folder ${newFolder.name}`)),
-    catchError(this.handleError<Folder>('add folder')))
+    return this.http.get<Folder>(url).pipe(
+      tap((_) => this.messageService.add(`fetched folder ${_.name}`)),
+      catchError(this.handleError<Folder>('get recipie'))
+    );
   }
 
-  updateFolder(folder: Folder): Observable<any> {    
+  addFolder(folder: Folder) {
+    return this.http
+      .post<Folder>(this.urlFolder, folder, this.httpOptions)
+      .pipe(
+        tap((newFolder: Folder) =>
+          this.messageService.add(`added folder ${newFolder.name}`)
+        ),
+        catchError(this.handleError<Folder>('add folder'))
+      );
+  }
+
+  updateFolder(folder: Folder): Observable<any> {
     return this.http.put(this.urlFolder, folder, this.httpOptions).pipe(
-      tap(_ => this.messageService.add(`updated  ${folder?.name}`)),
+      tap((_) => this.messageService.add(`updated  ${folder?.name}`)),
       catchError(this.handleError<any>('update folder'))
     );
   }
 
-  deleteFolder(id: number): Observable<Folder>{
+  deleteFolder(id: number): Observable<Folder> {
     const url = this.urlFolder + `/${id}`;
     return this.http.delete<Folder>(url, this.httpOptions).pipe(
-      tap(_ => this.messageService.add(`deleted folder ${id}`)),
+      tap((_) => this.messageService.add(`deleted folder ${id}`)),
       catchError(this.handleError<Folder>('deleteFolder'))
     );
   }
 
-  searchInFolderForFolders(term: string): Observable< Folder[] > {
+  searchInFolderForFolders(term: string): Observable<Folder[]> {
     if (!term.trim()) {
       return of([]);
     }
-    const res =  this.http.get< Folder[]>(`${this.urlFolder}/?name=${term}&parent=${FoldersComponent.folderId}`).pipe(
-      tap(x => x.length ?
-        this.messageService.add(`found folders matching "${term}"`) :
-        this.messageService.add(`no folders matching "${term}"`)),
-      catchError(this.handleError< Folder[]>('searchInFolderForFolders', []))
-    );
-    console.log(res)
+    const res = this.http
+      .get<Folder[]>(
+        `${this.urlFolder}/?name=${term}&parent=${FoldersComponent.folderId}`
+      )
+      .pipe(
+        tap((x) =>
+          x.length
+            ? this.messageService.add(`found folders matching "${term}"`)
+            : this.messageService.add(`no folders matching "${term}"`)
+        ),
+        catchError(this.handleError<Folder[]>('searchInFolderForFolders', []))
+      );
+    console.log(res);
     return res;
   }
+
   searchInFolderForRecipies(term: string): Observable<Recipie[]> {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<Recipie[]>(`api/recipies/?name=${term}&parent=${FoldersComponent.folderId}`).pipe(      
-      tap(x => x.length ?
-        this.messageService.add(`found recipies matching "${term}"`) :
-        this.messageService.add(`no recipies matching "${term}"`)),
-      catchError(this.handleError<Recipie[] >('searchInFolderForRecipies', []))
-    );
+    return this.http
+      .get<Recipie[]>(
+        `api/recipies/?name=${term}&parent=${FoldersComponent.folderId}`
+      )
+      .pipe(
+        tap((x) =>
+          x.length
+            ? this.messageService.add(`found recipies matching "${term}"`)
+            : this.messageService.add(`no recipies matching "${term}"`)
+        ),
+        catchError(this.handleError<Recipie[]>('searchInFolderForRecipies', []))
+      );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-  
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-  
+
       // TODO: better job of transforming error for user consumption
       this.messageService.add(`${operation} failed: ${error.message}`);
-  
+
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
-
 }

@@ -15,16 +15,16 @@ export class FoldersComponent implements OnInit {
   folder: Folder = {
     id: 0,
     folders: [],
-    recipies:[]
+    recipies: [],
   };
   @Input() id: number = 0;
   @Input() parent: Folder = {
     id: 0,
     folders: [],
-    recipies:[]
+    recipies: [],
   };
-  public static folderId : number;
-  public static term : string;
+  public static folderId: number;
+  public static term: string;
   public classReference = FoldersComponent;
   constructor(
     private folderService: FolderService,
@@ -37,6 +37,7 @@ export class FoldersComponent implements OnInit {
       return false;
     };
   }
+
   ngOnInit(): void {
     FoldersComponent.term = '';
     this.getFolder();
@@ -58,6 +59,7 @@ export class FoldersComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
   addRecipie(name: string, ingredients: string): void {
     name = name.trim();
     ingredients = ingredients.trim();
@@ -77,6 +79,7 @@ export class FoldersComponent implements OnInit {
         this.getFolder();
       });
   }
+
   addFolder(name: string): void {
     name = name.trim();
     if (!name) {
@@ -99,42 +102,39 @@ export class FoldersComponent implements OnInit {
         this.folderService
           .updateFolder(this.folder)
           .subscribe((folder) => (this.folder = folder));
-        this.getFolder();  
+        this.getFolder();
       });
   }
-  deleteRecipie(recipie: Recipie,folder: Folder = this.folder): void {
+
+  deleteRecipie(recipie: Recipie, folder: Folder = this.folder): void {
     this.recipieService.deleteRecipie(recipie.id).subscribe(() => {
-      folder.recipies = folder.recipies?.filter(
-        (r) => r.id !== recipie.id
-      );
-      this.folderService
-        .updateFolder(folder)
-        .subscribe((f) => (folder = f));
+      folder.recipies = folder.recipies?.filter((r) => r.id !== recipie.id);
+      this.folderService.updateFolder(folder).subscribe((f) => (folder = f));
       this.getFolder();
     });
   }
-  deleteFolder(id: number): void {
-    this.folderService.getFolder(id).subscribe((folder)=>{
-    for (var i=0; i< folder.recipies.length; i++){
-      this.deleteRecipie(folder.recipies[i],folder)
-    }
 
-    for(var i=0;i< folder.folders.length;i++){
-      this.deleteFolder(folder.folders[i].id)
-    }
-    this.folderService.deleteFolder(folder.id).subscribe(() => {
-      for (var i = 0; i < this.folder.folders.length; i++) {
-        if (this.folder.folders[i].id === folder.id) {
-          this.folder.folders.splice(i, 1);
-        
-      this.folderService
-        .updateFolder(this.folder)
-        .subscribe((folder) => (this.folder = folder));
-      this.getFolder();
-    }
-  }
-    }
-    )
+  deleteFolder(id: number): void {
+    this.folderService.getFolder(id).subscribe((folder) => {
+      for (var i = 0; i < folder.recipies.length; i++) {
+        this.deleteRecipie(folder.recipies[i], folder);
+      }
+
+      for (var i = 0; i < folder.folders.length; i++) {
+        this.deleteFolder(folder.folders[i].id);
+      }
+      this.folderService.deleteFolder(folder.id).subscribe(() => {
+        for (var i = 0; i < this.folder.folders.length; i++) {
+          if (this.folder.folders[i].id === folder.id) {
+            this.folder.folders.splice(i, 1);
+
+            this.folderService
+              .updateFolder(this.folder)
+              .subscribe((folder) => (this.folder = folder));
+            this.getFolder();
+          }
+        }
+      });
     });
   }
 }

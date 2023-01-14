@@ -5,21 +5,22 @@
   padding: 0;
   width: 15em;
 }
+
 .recipies li {
   position: relative;
   cursor: pointer;
 }
 
 .recipies li:hover {
-  left: .1em;
+  left: 0.1em;
 }
 
 .recipies a {
   color: #333;
   text-decoration: none;
-  background-color: #EEE;
-  margin: .5em;
-  padding: .3em 0;
+  background-color: #eee;
+  margin: 0.5em;
+  padding: 0.3em 0;
   height: 1.6em;
   border-radius: 4px;
   display: block;
@@ -49,11 +50,11 @@
   height: 1.8em;
   min-width: 16px;
   text-align: right;
-  margin-right: .8em;
+  margin-right: 0.8em;
   border-radius: 4px 0 0 4px;
 }
 
-.image{
+.image {
   position: relative;
   border: none;
   left: -1px;
@@ -62,7 +63,7 @@
   min-width: 16px;
 }
 
-.recipies  .name {
+.recipies .name {
   position: relative;
   bottom: 15px;
 }
@@ -72,7 +73,7 @@ button.delete {
   left: 220px;
   top: 5px;
   background-color: none;
-  color:  red;
+  color: red;
   font-size: 1.1rem;
   margin: 0;
   padding: 1px 10px 3px 10px;

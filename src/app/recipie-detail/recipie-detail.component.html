@@ -1,6 +1,6 @@
 <div *ngIf="recipie">
   <h2>{{ recipie.name | uppercase }} Szczegóły</h2>
-  <button type="button" (click)="save()">save</button> 
+  <button type="button" (click)="save()">save</button>
   <div class="block">
     <label for="recipie-name">Nazwa przepisu: </label>
     <input id="recipie-name" [(ngModel)]="recipie.name" placeholder="name" />
