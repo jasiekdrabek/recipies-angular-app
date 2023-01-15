@@ -1,7 +1,12 @@
 <h2>My reciepies</h2>
 <app-recipie-search [(recipies)]="recipies" [(currentSearchTerm)]="term"></app-recipie-search>
 <ul *ngIf="term === ''" class="recipies">
-  <li *ngFor="let recipie of recipies">
+  <li *ngFor="let recipie of recipies | paginate
+  : {
+      itemsPerPage: tableSize,
+      currentPage: page,
+      totalItems: count
+    };">
     <a routerLink="/detail/{{ recipie.id }}">
       <span class="badge"
         ><img
@@ -20,5 +25,11 @@
     >
       x
     </button>
-  </li>
+  </li> 
 </ul>
+<pagination-controls
+previousLabel="Prev"
+nextLabel="Next"
+(pageChange)="onTableDataChange($event)"
+>
+</pagination-controls>

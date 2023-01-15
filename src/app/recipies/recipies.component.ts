@@ -14,6 +14,11 @@ export class RecipiesComponent implements OnInit {
     private recipieService: RecipieService,
     private folderService: FolderService
   ) {}
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 10;
+  term: string ='';
+  recipies: Recipie[] = [];
 
   getRecipies(): void {
     this.recipieService
@@ -26,9 +31,6 @@ export class RecipiesComponent implements OnInit {
     this.term = '';
   }
 
-  term: string ='';
-  recipies: Recipie[] = [];
-
   deleteRecipie(recipie: Recipie): void {
     this.recipieService.deleteRecipie(recipie.id).subscribe(() => {
       this.recipies = this.recipies?.filter((r) => r.id !== recipie.id);
@@ -39,5 +41,10 @@ export class RecipiesComponent implements OnInit {
           this.folderService.updateFolder(folder).subscribe();
         });
     });
+  }
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.getRecipies();
   }
 }
