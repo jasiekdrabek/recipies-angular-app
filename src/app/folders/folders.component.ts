@@ -130,7 +130,7 @@ export class FoldersComponent implements OnInit {
             this.folder.folders.splice(i, 1);
             this.folderService
               .updateFolder(this.folder)
-              .subscribe((folder) => {(this.folder = folder);console.log(this.folder)});
+              .subscribe((folder) => (this.folder = folder));
             this.getFolder();
           }
         }
