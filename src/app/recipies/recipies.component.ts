@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RecipieService } from '../recipie.service';
 import { Recipie } from '../recipie';
 import { FolderService } from '../folder.service';
@@ -6,7 +6,7 @@ import { Folder } from '../folder';
 
 @Component({
   selector: 'app-recipies',
-  templateUrl: './recipies.component.html',
+  templateUrl: `./recipies.component.html`,
   styleUrls: ['./recipies.component.css'],
 })
 export class RecipiesComponent implements OnInit {
@@ -23,11 +23,10 @@ export class RecipiesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRecipies();
-    RecipiesComponent.term = '';
+    this.term = '';
   }
 
-  public static term: string;
-  public classReference = RecipiesComponent;
+  term: string ='';
   recipies: Recipie[] = [];
 
   deleteRecipie(recipie: Recipie): void {

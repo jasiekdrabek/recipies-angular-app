@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FolderService } from '../folder.service';
 import { Folder } from '../folder';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,15 +17,14 @@ export class FoldersComponent implements OnInit {
     folders: [],
     recipies: [],
   };
-  @Input() id: number = 0;
-  @Input() parent: Folder = {
+  id: number = 0;
+  parent: Folder = {
     id: 0,
     folders: [],
     recipies: [],
   };
   public static folderId: number;
-  public static term: string;
-  public classReference = FoldersComponent;
+  term!: string;
   constructor(
     private folderService: FolderService,
     private recipieService: RecipieService,
@@ -39,7 +38,7 @@ export class FoldersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    FoldersComponent.term = '';
+    this.term = '';
     this.getFolder();
   }
 
@@ -109,7 +108,9 @@ export class FoldersComponent implements OnInit {
   deleteRecipie(recipie: Recipie, folder: Folder = this.folder): void {
     this.recipieService.deleteRecipie(recipie.id).subscribe(() => {
       folder.recipies = folder.recipies?.filter((r) => r.id !== recipie.id);
+      if(folder.id === this.folder.id){
       this.folderService.updateFolder(folder).subscribe((f) => (folder = f));
+      }
       this.getFolder();
     });
   }
@@ -127,10 +128,9 @@ export class FoldersComponent implements OnInit {
         for (var i = 0; i < this.folder.folders.length; i++) {
           if (this.folder.folders[i].id === folder.id) {
             this.folder.folders.splice(i, 1);
-
             this.folderService
               .updateFolder(this.folder)
-              .subscribe((folder) => (this.folder = folder));
+              .subscribe((folder) => {(this.folder = folder);console.log(this.folder)});
             this.getFolder();
           }
         }

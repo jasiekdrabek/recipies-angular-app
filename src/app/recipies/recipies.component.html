@@ -1,6 +1,6 @@
 <h2>My reciepies</h2>
-<app-recipie-search></app-recipie-search>
-<ul *ngIf="classReference.term === ''" class="recipies">
+<app-recipie-search [(recipies)]="recipies" [(currentSearchTerm)]="term"></app-recipie-search>
+<ul *ngIf="term === ''" class="recipies">
   <li *ngFor="let recipie of recipies">
     <a routerLink="/detail/{{ recipie.id }}">
       <span class="badge"

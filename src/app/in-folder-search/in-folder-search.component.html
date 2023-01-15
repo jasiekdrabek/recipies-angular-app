@@ -13,9 +13,15 @@
         /></span>
         <span class="name">{{ folder.name }}</span>
       </a>
+      <button
+        type="button"
+        class="delete"
+        title="delete folder"
+        (click)="deleteFolder(folder.id)"
+      >
+        x
+      </button>
     </li>
-  </ul>
-  <ul class="search">
     <li *ngFor="let recipie of recipies$ | async">
       <a routerLink="/detail/{{ recipie.id }}">
         <span class="badge"
@@ -27,6 +33,14 @@
         /></span>
         <span class="name">{{ recipie.name }}</span>
       </a>
+      <button
+        type="button"
+        class="delete"
+        title="delete recipie"
+        (click)="deleteRecipie(recipie)"
+      >
+        x
+      </button>
     </li>
   </ul>
 </div>

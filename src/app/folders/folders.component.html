@@ -1,8 +1,8 @@
 <h2>My reciepies</h2>
 <div class="grid">
   <div>
-    <app-in-folder-search></app-in-folder-search>
-    <ul *ngIf="classReference.term === ''" class="folders">
+    <app-in-folder-search [(folder)]="folder" [(currentSearchTerm)]="term"></app-in-folder-search>
+    <ul *ngIf="term === ''" class="folders">
       <a
         *ngIf="parent.id != folder?.id"
         class="parent"
@@ -64,7 +64,7 @@
     <label for="new-recipie">Nazwa przepisu: </label>
     <input id="new-recipie" #recipieName />
     <label for="new-recipie">Składniki: </label>
-    <input ingridients="new-recipie" #recipieIngredients />
+    <textarea class="recipie-ingredients" ingridients="new-recipie" aria-multiline="true" #recipieIngredients></textarea>
     <button
       type="button"
       class="add-button"

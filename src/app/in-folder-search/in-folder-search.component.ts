@@ -1,42 +1,84 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Folder } from '../folder';
 import { FolderService } from '../folder.service';
-import { FoldersComponent } from '../folders/folders.component';
 import { Recipie } from '../recipie';
+import { RecipieService } from '../recipie.service';
 
 @Component({
   selector: 'app-in-folder-search',
   templateUrl: './in-folder-search.component.html',
   styleUrls: ['./in-folder-search.component.css'],
 })
-export class InFolderSearchComponent implements OnInit {
+export class InFolderSearchComponent implements OnInit,OnChanges {
   folders$!: Observable<Folder[]>;
   recipies$!: Observable<Recipie[]>;
   private searchTerms = new Subject<string>();
-  constructor(private folderService: FolderService) {}
+  @Input()  folder!: Folder;
+  @Output() folderChange = new EventEmitter<Folder>();   
+  @Input() currentSearchTerm = ''
+  @Output() currentSearchTermChange = new EventEmitter<string>()
+  constructor(private folderService: FolderService,private recipieService: RecipieService) {}
 
   search(term: string): void {
     this.searchTerms.next(term);
-    console.log(FoldersComponent.folderId);
-    FoldersComponent.term = term;
+    this.currentSearchTerm = term;
+    this.currentSearchTermChange.emit(this.currentSearchTerm);
   }
 
   ngOnInit(): void {
     this.folders$ = this.searchTerms.pipe(
       debounceTime(300),
-      distinctUntilChanged(),
       switchMap((term: string) =>
         this.folderService.searchInFolderForFolders(term)
       )
     );
     this.recipies$ = this.searchTerms.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
+      debounceTime(300),      
       switchMap((term: string) =>
         this.folderService.searchInFolderForRecipies(term)
       )
     );
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.search(this.currentSearchTerm)
+  }
+
+  deleteRecipie(recipie: Recipie, folder: Folder = this.folder): void {
+    this.recipieService.deleteRecipie(recipie.id).subscribe(() => {
+      folder.recipies = folder.recipies?.filter((r) => r.id !== recipie.id);
+      console.log(this.folder)
+      this.folderChange.emit(this.folder)
+      this.search(this.currentSearchTerm)
+      if(folder.id === this.folder.id){
+        this.folderService.updateFolder(folder).subscribe((f) => (folder = f));
+        }
+    });
+  }
+
+  deleteFolder(id: number): void {
+    this.folderService.getFolder(id).subscribe((folder) => {
+      for (var i = 0; i < folder.recipies.length; i++) {
+        this.deleteRecipie(folder.recipies[i], folder);        
+      }
+
+      for (var i = 0; i < folder.folders.length; i++) {
+        this.deleteFolder(folder.folders[i].id);
+      }
+      this.folderService.deleteFolder(folder.id).subscribe(() => {
+        for (var i = 0; i < this.folder.folders.length; i++) {
+          if (this.folder.folders[i].id === folder.id) {
+            this.folder.folders.splice(i, 1);
+            this.folderService
+              .updateFolder(this.folder)
+              .subscribe((folder) => (this.folder = folder));
+              this.folderChange.emit(this.folder)  
+              this.search(this.currentSearchTerm)
+          }
+        }
+      });
+    });
   }
 }
