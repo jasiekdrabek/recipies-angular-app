@@ -7,11 +7,12 @@
   </div>
   <div class="block">
     <label for="recipie-ingredients">Składnki: </label>
-    <input
+    <textarea
       id="recipie-ingredients"
+      class="recipie-ingredients"
       [(ngModel)]="recipie.ingredients"
       placeholder="ingredients"
-    />
+    >[(ngModel)]="recipie.ingredients"</textarea>
   </div>
 </div>
 <button type="button" (click)="goBack()">go back</button>

@@ -7,6 +7,7 @@ label {
 .block {
   display: flex;
   flex-direction: column;
+  max-width: 450px;
 }
 
 input {
@@ -30,4 +31,8 @@ button:disabled {
   background-color: #eee;
   color: #ccc;
   cursor: auto;
+}
+
+.recipie-ingredients{
+  height: 200px;
 }

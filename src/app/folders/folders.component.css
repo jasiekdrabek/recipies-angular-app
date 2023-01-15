@@ -102,3 +102,7 @@ button.delete {
   margin: 0;
   padding: 1px 10px 3px 10px;
 }
+
+.recipie-ingredients{
+  height: 200px;
+}
