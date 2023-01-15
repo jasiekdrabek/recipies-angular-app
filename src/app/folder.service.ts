@@ -58,7 +58,7 @@ export class FolderService {
     if (!term.trim()) {
       return of([]);
     }
-    const res = this.http
+    return this.http
       .get<Folder[]>(
         `${this.urlFolder}/?name=${term}&parent=${FoldersComponent.folderId}`
       )
@@ -70,8 +70,6 @@ export class FolderService {
         ),
         catchError(this.handleError<Folder[]>('searchInFolderForFolders', []))
       );
-    console.log(res);
-    return res;
   }
 
   searchInFolderForRecipies(term: string): Observable<Recipie[]> {
