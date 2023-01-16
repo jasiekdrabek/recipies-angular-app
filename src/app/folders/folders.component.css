@@ -106,3 +106,7 @@ button.delete {
 .recipie-ingredients{
   height: 200px;
 }
+
+.drop-dawn{
+  min-width: 70%;
+}

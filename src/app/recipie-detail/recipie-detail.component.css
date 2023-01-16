@@ -6,6 +6,7 @@ label {
 
 .block {
   display: flex;
+  margin-top: 20px;
   flex-direction: column;
   max-width: 450px;
 }
@@ -34,5 +35,26 @@ button:disabled {
 }
 
 .recipie-ingredients{
+  margin-top: 20px;
   height: 200px;
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 250px;
+  width: 15em;
+  margin-left: 7%;
+  padding: 0;
+}
+
+.details{
+  min-width: 50%;
 }
