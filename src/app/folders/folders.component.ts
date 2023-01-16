@@ -184,6 +184,11 @@ export class FoldersComponent implements OnInit {
         this.availableFolders.splice(j,1);
       }
     }
+    for(let j=0; j< this.availableFolders.length;j++){
+      if(this.availableFolders[j].id === this.folder.parent){
+        this.availableFolders.splice(j,1);
+      }
+    }
     this.folderService.getFolder(id).subscribe((folder) => {
       for (let i = 0; i < folder.folders.length; i++) {
         for(let j=0; j< this.availableFolders.length;j++){

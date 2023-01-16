@@ -14,6 +14,7 @@ import { Folder } from '../folder';
 })
 export class RecipieDetailComponent {
   folders: Folder[] = [];
+  parent: Folder | undefined  
   constructor(
     private route: ActivatedRoute,
     private recipieService: RecipieService,
@@ -33,6 +34,7 @@ export class RecipieDetailComponent {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.recipieService.getRecipie(id).subscribe((recipie) => {
       this.recipie = recipie;
+      this.folderService.getFolder(this.recipie.parent).subscribe((folder) => this.parent = folder)
       this.folderService.getFolders().subscribe((folders) => {
         this.folders = folders;
         for(let i=0;i<folders.length;i++){
@@ -53,8 +55,20 @@ export class RecipieDetailComponent {
   moveToNewFolder(newFolderIdStr: string): void {
     const newFolderId = Number(newFolderIdStr);
     if (this.recipie) {
+      this.folderService.getFolder(this.recipie.parent).subscribe((folder) => {
+        for (let i = 0; i < folder.recipies.length; i++) {
+          if (folder.recipies[i].id === this.recipie?.id) {
+            folder.recipies.splice(i, 1);
+          }
+        }
+        this.folderService.updateFolder(folder).subscribe();
+      });
       this.recipie.parent = newFolderId;
-      this.recipieService.updateRecipie(this.recipie).subscribe();
+      this.folderService.getFolder(this.recipie.parent).subscribe((folder) => {
+        folder.recipies.push(this.recipie as Recipie);
+        this.folderService.updateFolder(folder).subscribe();
+      });
+      this.recipieService.updateRecipie(this.recipie).subscribe(()=>this.getRecipie());
     }
   }
 
