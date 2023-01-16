@@ -1,7 +1,10 @@
-<h2>My reciepies</h2>
+<h2>Moje przepisy</h2>
 <div class="grid">
   <div>
-    <app-in-folder-search [(folder)]="folder" [(currentSearchTerm)]="term"></app-in-folder-search>
+    <app-in-folder-search
+      [(folder)]="folder"
+      [(currentSearchTerm)]="term"
+    ></app-in-folder-search>
     <ul *ngIf="term === ''" class="folders">
       <a
         *ngIf="parent.id != folder?.id"
@@ -64,14 +67,31 @@
     <label for="new-recipie">Nazwa przepisu: </label>
     <input id="new-recipie" #recipieName />
     <label for="new-recipie">Składniki: </label>
-    <textarea class="recipie-ingredients" ingridients="new-recipie" aria-multiline="true" #recipieIngredients></textarea>
+    <textarea
+      class="recipie-ingredients"
+      ingridients="new-recipie"
+      aria-multiline="true"
+      #recipieIngredients
+    ></textarea>
+    <label for="new-recipie">Przygotowanie: </label>
+    <textarea
+      preparation="recipie-preparation"
+      class="recipie-ingredients"
+      aria-multiline="true"
+      #recipiePreparation
+    ></textarea>
     <button
       type="button"
       class="add-button"
       (click)="
-        addRecipie(recipieName.value, recipieIngredients.value);
+        addRecipie(
+          recipieName.value,
+          recipieIngredients.value,
+          recipiePreparation.value
+        );
         recipieName.value = '';
-        recipieIngredients.value = ''
+        recipieIngredients.value = '';
+        recipiePreparation.value = ''
       "
     >
       Dodaj przepis
@@ -89,5 +109,16 @@
     >
       Dodaj folder
     </button>
+    <div *ngIf="availableFolders.length !== 0">
+      <h2>Przenieś do nowego folderu</h2>
+      <select class="drop-dawn" id="move-to-new-folder" #newFolder>
+        <option *ngFor="let folder of availableFolders" value="{{ folder.id }}">
+          {{ folder.name }}
+        </option>
+      </select>
+      <button type="button" (click)="moveToNewFolder(newFolder.value)">
+        Przenieś
+      </button>
+    </div>
   </div>
 </div>

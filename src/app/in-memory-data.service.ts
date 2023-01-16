@@ -7,14 +7,14 @@ import { Recipie } from './recipie';
 })
 export class InMemoryDataService implements InMemoryDataService {
   createDb() {
-    const recipies = [
-      { id: 1, parent: 1, name: 'Pizza', ingredients: 'Woda' },
-      { id: 2, parent: 1, name: 'Spaghetti', ingredients: 'Makaron' },
-      { id: 3, parent: 1, name: 'Lasagne', ingredients: 'Makaron' },
-      { id: 4, parent: 3, name: 'Zupa grzybowa', ingredients: 'Grzyby' },
-      { id: 5, parent: 0, name: 'Ciasto na pierogi', ingredients: 'mąka' },
-      { id: 6, parent: 2, name: 'Sernik', ingredients: 'Ser biały' },
-      { id: 7, parent: 2, name: 'Brownie', ingredients: 'Czekolada' },
+    const recipies: Recipie[] = [
+      { id: 1, parent: 1, name: 'Pizza', ingredients: 'Woda', preparation: 'zrób pizze' },
+      { id: 2, parent: 1, name: 'Spaghetti', ingredients: 'Makaron', preparation: 'zrób spaghetti' },
+      { id: 3, parent: 1, name: 'Lasagne', ingredients: 'Makaron', preparation: 'zrób lasagne' },
+      { id: 4, parent: 3, name: 'Zupa grzybowa', ingredients: 'Grzyby', preparation: 'zrób zupę grzybową' },
+      { id: 5, parent: 0, name: 'Ciasto na pierogi', ingredients: 'mąka', preparation: 'zrób ciasto na pierogi' },
+      { id: 6, parent: 2, name: 'Sernik', ingredients: 'Ser biały',preparation: 'zrób sernik' },
+      { id: 7, parent: 2, name: 'Brownie', ingredients: 'Czekolada', preparation: 'zrób brownie' },
     ];
 
     const folders: Folder[] = [

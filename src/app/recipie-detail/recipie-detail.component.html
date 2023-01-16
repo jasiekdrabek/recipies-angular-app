@@ -1,18 +1,50 @@
-<div *ngIf="recipie">
-  <h2>{{ recipie.name | uppercase }} Szczegóły</h2>
-  <button type="button" (click)="save()">save</button>
-  <div class="block">
-    <label for="recipie-name">Nazwa przepisu: </label>
-    <input id="recipie-name" [(ngModel)]="recipie.name" placeholder="name" />
+<div class="grid">
+  <div class="details">
+    <div *ngIf="recipie">
+      <h2>{{ recipie.name | uppercase }}</h2>
+      <button type="button" (click)="save()">Zapisz</button>
+      <div class="block">
+        <label for="recipie-name">Nazwa przepisu: </label>
+        <input
+          id="recipie-name"
+          [(ngModel)]="recipie.name"
+          placeholder="name"
+        />
+      </div>
+      <div class="block">
+        <label for="recipie-ingredients">Składnki: </label>
+        <textarea
+          id="recipie-ingredients"
+          class="recipie-ingredients"
+          [(ngModel)]="recipie.ingredients"
+          placeholder="ingredients"
+        >
+[(ngModel)]="recipie.ingredients"</textarea
+        >
+      </div>
+      <div class="block">
+        <label for="recipie-preparation">Przygotowanie: </label>
+        <textarea
+          id="recipie-preparation"
+          class="recipie-ingredients"
+          [(ngModel)]="recipie.preparation"
+          placeholder="preparation"
+        >
+[(ngModel)]="recipie.preparation"</textarea
+        >
+      </div>
+    </div>
+    <button type="button" (click)="goBack()">Wróc na poprzednią stronę</button>
   </div>
-  <div class="block">
-    <label for="recipie-ingredients">Składnki: </label>
-    <textarea
-      id="recipie-ingredients"
-      class="recipie-ingredients"
-      [(ngModel)]="recipie.ingredients"
-      placeholder="ingredients"
-    >[(ngModel)]="recipie.ingredients"</textarea>
+  <div class="form">
+      <h2>Przenieś do nowego folderu</h2>
+      <select class="drop-dawn" id="move-to-new-folder" #newFolder>
+        <option *ngFor="let folder of folders" value="{{ folder.id }}">
+          {{ folder.name }}
+        </option>
+      </select>
+      <button type="button" (click)="moveToNewFolder(newFolder.value)">
+        Przenieś
+      </button>
   </div>
 </div>
-<button type="button" (click)="goBack()">go back</button>
