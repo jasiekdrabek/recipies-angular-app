@@ -24,7 +24,14 @@ export class FolderService {
     const url = this.urlFolder + `/${id}`;
     return this.http.get<Folder>(url).pipe(
       tap((_) => this.messageService.add(`fetched folder ${_.name}`)),
-      catchError(this.handleError<Folder>('get recipie'))
+      catchError(this.handleError<Folder>('getRecipie'))
+    );
+  }
+
+  getFolders(): Observable<Folder[]> {
+    return this.http.get<Folder[]>(this.urlFolder).pipe(
+      tap(() => this.messageService.add(`fetched folders`)),
+      catchError(this.handleError<Folder[]>('getFolders'))
     );
   }
 
@@ -35,14 +42,14 @@ export class FolderService {
         tap((newFolder: Folder) =>
           this.messageService.add(`added folder ${newFolder.name}`)
         ),
-        catchError(this.handleError<Folder>('add folder'))
+        catchError(this.handleError<Folder>('addFolder'))
       );
   }
 
   updateFolder(folder: Folder): Observable<any> {
     return this.http.put(this.urlFolder, folder, this.httpOptions).pipe(
       tap((_) => this.messageService.add(`updated  ${folder?.name}`)),
-      catchError(this.handleError<any>('update folder'))
+      catchError(this.handleError<any>('updateFolder'))
     );
   }
 
