@@ -27,7 +27,7 @@ looks only for elements in opened folder.
 
 ![Recipie details](/screenshoots/recipieDetails.png)
 
-In this view we can see and edit chosen recipie. there is option o go back to previous page and to mave recipie to anoter folder.
+In this view we can see and edit chosen recipie. there is option o go back to previous page and to move recipie to anoter folder.
 
 ## Other informations
 
