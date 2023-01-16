@@ -12,8 +12,11 @@ import { FolderService } from '../folder.service';
   styleUrls: ['./recipie-search.component.css'],
 })
 export class RecipieSearchComponent implements OnInit, OnChanges {
-  recipies$!: Observable<Recipie[]>;
+  recipies$!: Observable<Recipie[] | any>;
   private searchTerms = new Subject<string>();
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 10;
   @Input() recipies : Recipie [] = [];
   @Output() recipiesChange = new EventEmitter<Recipie []>(); 
   @Input() currentSearchTerm = ''
@@ -48,5 +51,9 @@ export class RecipieSearchComponent implements OnInit, OnChanges {
           this.folderService.updateFolder(folder).subscribe();
         });
     });
+  }
+
+  onTableDataChange(event: any) {
+    this.page = event;
   }
 }

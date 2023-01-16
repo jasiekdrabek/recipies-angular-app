@@ -1,8 +1,14 @@
 <div id="search-component">
-  <label for="search-box">Recipie Search</label>
+  <label for="search-box">Szukaj przepisów:</label>
   <input #searchBox id="search-box" (input)="search(searchBox.value)" />
   <ul class="search-recipies">
-    <li *ngFor="let recipie of recipies$ | async">
+    <li *ngFor="let recipie of (recipies$ | async )| paginate
+    : {
+        itemsPerPage: tableSize,
+        currentPage: page,
+        totalItems: count,
+        id:'search'
+      } ">
       <a routerLink="/detail/{{ recipie.id }}">
         <span class="badge"
           ><img
@@ -23,4 +29,12 @@
       </button>
     </li>
   </ul>
+  <pagination-controls
+  *ngIf="currentSearchTerm !== ''"
+  id='search'
+previousLabel="Prev"
+nextLabel="Next"
+(pageChange)="onTableDataChange($event)"
+>
+</pagination-controls>
 </div>

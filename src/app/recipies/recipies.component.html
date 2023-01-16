@@ -5,7 +5,8 @@
   : {
       itemsPerPage: tableSize,
       currentPage: page,
-      totalItems: count
+      totalItems: count,
+      id:'recipie'
     };">
     <a routerLink="/detail/{{ recipie.id }}">
       <span class="badge"
@@ -28,6 +29,8 @@
   </li> 
 </ul>
 <pagination-controls
+*ngIf="term === ''"
+id='recipie'
 previousLabel="Prev"
 nextLabel="Next"
 (pageChange)="onTableDataChange($event)"
