@@ -2,13 +2,19 @@
   <label for="search-box">Szukaj przepisów:</label>
   <input #searchBox id="search-box" (input)="search(searchBox.value)" />
   <ul class="search-recipies">
-    <li *ngFor="let recipie of (recipies$ | async )| paginate
-    : {
-        itemsPerPage: tableSize,
-        currentPage: page,
-        totalItems: count,
-        id:'search'
-      } ">
+    <li
+      *ngFor="
+        let recipie of recipies$
+          | async
+          | paginate
+            : {
+                itemsPerPage: tableSize,
+                currentPage: page,
+                totalItems: count,
+                id: 'search'
+              }
+      "
+    >
       <a routerLink="/detail/{{ recipie.id }}">
         <span class="badge"
           ><img
@@ -27,14 +33,31 @@
       >
         x
       </button>
+      <button
+        type="button"
+        class="fav"
+        title="add/remove from fav"
+        (click)="addOrRemoveFromFav(recipie)"
+      >
+        <img
+          *ngIf="recipie.favourite"
+          class="img-fav"
+          src="https://img.icons8.com/color/512/hearts.png"
+        />
+        <img
+          *ngIf="!recipie.favourite"
+          class="img-fav"
+          src="https://img.icons8.com/windows/512/hearts.png"
+        />
+      </button>
     </li>
   </ul>
   <pagination-controls
-  *ngIf="currentSearchTerm !== ''"
-  id='search'
-previousLabel="Prev"
-nextLabel="Next"
-(pageChange)="onTableDataChange($event)"
->
-</pagination-controls>
+    *ngIf="currentSearchTerm !== ''"
+    id="search"
+    previousLabel="Prev"
+    nextLabel="Next"
+    (pageChange)="onTableDataChange($event)"
+  >
+  </pagination-controls>
 </div>

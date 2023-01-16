@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { Folder } from '../folder';
@@ -17,11 +25,14 @@ export class RecipieSearchComponent implements OnInit, OnChanges {
   page: number = 1;
   count: number = 0;
   tableSize: number = 10;
-  @Input() recipies : Recipie [] = [];
-  @Output() recipiesChange = new EventEmitter<Recipie []>(); 
-  @Input() currentSearchTerm = ''
-  @Output() currentSearchTermChange = new EventEmitter<string>()
-  constructor(private recipieService: RecipieService, private folderService : FolderService) {}
+  @Input() recipies: Recipie[] = [];
+  @Output() recipiesChange = new EventEmitter<Recipie[]>();
+  @Input() currentSearchTerm = '';
+  @Output() currentSearchTermChange = new EventEmitter<string>();
+  constructor(
+    private recipieService: RecipieService,
+    private folderService: FolderService
+  ) {}
 
   search(term: string): void {
     this.searchTerms.next(term);
@@ -37,9 +48,9 @@ export class RecipieSearchComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.search(this.currentSearchTerm)
+    this.search(this.currentSearchTerm);
   }
-  
+
   deleteRecipie(recipie: Recipie): void {
     this.recipieService.deleteRecipie(recipie.id).subscribe(() => {
       this.recipies = this.recipies?.filter((r) => r.id !== recipie.id);
@@ -55,5 +66,17 @@ export class RecipieSearchComponent implements OnInit, OnChanges {
 
   onTableDataChange(event: any) {
     this.page = event;
+  }
+
+  addOrRemoveFromFav(recipie: Recipie): void {
+    recipie.favourite = !recipie.favourite;
+    this.recipieService.updateRecipie(recipie).subscribe();
+    this.folderService.getFolder(recipie.parent).subscribe((folder) => {
+      for (let i = 0; i < folder.recipies.length; i++) {
+        if (folder.recipies[i].id === recipie.id)
+          folder.recipies[i].favourite = recipie.favourite;
+      }
+      this.folderService.updateFolder(folder).subscribe();
+    });
   }
 }

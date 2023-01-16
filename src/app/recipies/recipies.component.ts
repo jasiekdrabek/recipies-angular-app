@@ -17,7 +17,7 @@ export class RecipiesComponent implements OnInit {
   page: number = 1;
   count: number = 0;
   tableSize: number = 10;
-  term: string ='';
+  term: string = '';
   recipies: Recipie[] = [];
 
   getRecipies(): void {
@@ -46,5 +46,17 @@ export class RecipiesComponent implements OnInit {
   onTableDataChange(event: any) {
     this.page = event;
     this.getRecipies();
+  }
+
+  addOrRemoveFromFav(recipie: Recipie): void {
+    recipie.favourite = !recipie.favourite;
+    this.recipieService.updateRecipie(recipie).subscribe();
+    this.folderService.getFolder(recipie.parent).subscribe((folder) => {
+      for (let i = 0; i < folder.recipies.length; i++) {
+        if (folder.recipies[i].id === recipie.id)
+          folder.recipies[i].favourite = recipie.favourite;
+      }
+      this.folderService.updateFolder(folder).subscribe();
+    });
   }
 }

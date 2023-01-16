@@ -60,6 +60,15 @@
         >
           x
         </button>
+        <button
+          type="button"
+          class="fav"
+          title="add/remove from fav"
+          (click)="addOrRemoveFromFav(recipie)"
+        >
+          <img *ngIf="recipie.favourite" class="img-fav" src="https://img.icons8.com/color/512/hearts.png"/>
+          <img *ngIf="!recipie.favourite" class="img-fav" src="https://img.icons8.com/windows/512/hearts.png"/>
+        </button>
       </li>
     </ul>
   </div>

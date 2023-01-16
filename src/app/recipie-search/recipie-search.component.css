@@ -97,3 +97,21 @@ input {
 input:focus {
   outline: #336699 auto 1px;
 }
+
+button.fav{
+  position: absolute;
+  left: 190px;
+  top: 5px;
+  background-color: none;
+  font-size: 1.1rem;
+  margin: 0;
+  padding: 1px 10px 3px 10px;  
+}
+
+button.fav:hover{
+  background-color: #eee;
+}
+
+.img-fav{
+  height: 1em;
+}
