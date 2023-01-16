@@ -6,6 +6,31 @@
 
 ![Home page](/screenshoots/Dashboard.png) 
 
+here we have dashboard where we can choose home page or recipies or recipies in folder. We can also open top 3 recipies.
+
+### All recipies
+
+![All recipies](/screenshoots/allRecipies.png)
+
+View where we can find all recipies. to implement pagination I used ngx-pagination. By clicing red 'x' we can delete recipie.
+ And when we click on recipie name opens view with recipie details. There is also search option.
+
+### Recipies in folders
+
+![Recipies in folders](/screenshoots/recipiesInFolders.png)  
+
+Here we have view with recipies in folders. We can do basic CRUD(create, read, update and delete) operations on folders and recipies. 
+We can also move opened folder to another folder. All options that were available in all recipies view can be done here too, but search 
+looks only for elements in opened folder.
+
+### Recipie details
+
+![Recipie details](/screenshoots/recipieDetails.png)
+
+In this view we can see and edit chosen recipie. there is option o go back to previous page and to mave recipie to anoter folder.
+
+## Other informations
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.5.
 
 ## Development server
