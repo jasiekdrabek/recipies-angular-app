@@ -146,45 +146,52 @@
         Add recipe
       </button>
     </mat-card-content>
-  </mat-card >
+  </mat-card>
   <mat-card class="mat-card">
     <mat-card-content>
-    <mat-card class="margin">
-      <mat-card-header>
-        <h2>Add folder in this folder</h2>
-      </mat-card-header>
-<mat-card-content>
-  <label for="new-folder">Name: </label>
-      <input id="new-folder" #folderName />
-</mat-card-content>
-</mat-card>
+      <mat-card class="margin">
+        <mat-card-header>
+          <h2>Add folder in this folder</h2>
+        </mat-card-header>
+        <mat-card-content>
+          <label for="new-folder">Name: </label>
+          <input id="new-folder" #folderName />
+        </mat-card-content>
+      </mat-card>
       <button
-      class="button"
+        class="button"
         type="button"
         (click)="addFolder(folderName.value); folderName.value = ''"
       >
         Add folder
       </button>
 
-    <mat-card *ngIf="availableFolders.length !== 0" class="margin">
-      <mat-card-header>
-        <h2>Move to another folder</h2>
-      </mat-card-header>
-      <mat-form-field appearance="fill">
-        <mat-label>Select new folder</mat-label>
-        <mat-select  [(ngModel)]="selectedValue" id="move-to-new-folder" #newFolder>
-          <mat-option
-            *ngFor="let folder of availableFolders"
-            [value]=" folder.id "
-            >{{ folder.name }}</mat-option
+      <mat-card *ngIf="availableFolders.length !== 0" class="margin">
+        <mat-card-header>
+          <h2>Move to another folder</h2>
+        </mat-card-header>
+        <mat-form-field appearance="fill">
+          <mat-label>Select new folder</mat-label>
+          <mat-select
+            [(ngModel)]="selectedValue"
+            id="move-to-new-folder"
+            #newFolder
           >
-        </mat-select>
-      </mat-form-field>
-    </mat-card>
-      <button class="button" type="button" (click)="moveToNewFolder(selectedValue)">
+            <mat-option
+              *ngFor="let folder of availableFolders"
+              [value]="folder.id"
+              >{{ folder.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </mat-card>
+      <button
+        class="button"
+        type="button"
+        (click)="moveToNewFolder(selectedValue)"
+      >
         Move
       </button>
-    
     </mat-card-content>
   </mat-card>
 </div>

@@ -16,6 +16,11 @@ export class DashboardComponent implements OnInit {
   getRecipies(): void {
     this.recipieService
       .getRecipies()
-      .subscribe((recipies) => (this.recipies = recipies.filter(recipie => recipie.favourite === true)));
+      .subscribe(
+        (recipies) =>
+          (this.recipies = recipies.filter(
+            (recipie) => recipie.favourite === true
+          ))
+      );
   }
 }

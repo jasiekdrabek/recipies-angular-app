@@ -9,7 +9,7 @@
       <input #searchBox id="search-box" (input)="search(searchBox.value)" />
     </mat-card-content>
   </mat-card>
-  <mat-card class="mat-card" *ngIf="currentSearchTerm !=='' ">
+  <mat-card class="mat-card" *ngIf="currentSearchTerm !== ''">
     <mat-card-content>
       <ul class="search-recipies">
         <li
@@ -25,16 +25,17 @@
                   }
           "
         >
-          <a >
-            <span class="badge"
-            routerLink="/detail/{{ recipie.id }}"
+          <a>
+            <span class="badge" routerLink="/detail/{{ recipie.id }}"
               ><img
                 class="image"
                 [src]="
                   'https://www.iconpacks.net/icons/2/free-file-icon-1453-thumb.png'
                 "
             /></span>
-            <span routerLink="/detail/{{ recipie.id }}" class="name">{{ recipie.name }}</span>
+            <span routerLink="/detail/{{ recipie.id }}" class="name">{{
+              recipie.name
+            }}</span>
             <span>
               <button
                 type="button"

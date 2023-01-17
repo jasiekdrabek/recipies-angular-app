@@ -35,7 +35,7 @@
   color: #fafafa;
 }
 
-label{
+label {
   color: white;
 }
 
@@ -81,17 +81,17 @@ button.delete {
   color: red;
 }
 
-button.fav{
+button.fav {
   cursor: pointer;
   position: absolute;
   text-align: right;
   bottom: 10%;
   right: calc(20% + 20px);
   background-color: none;
-  border: none; 
+  border: none;
 }
 
-.img-fav{
+.img-fav {
   height: 1em;
 }
 
@@ -102,6 +102,7 @@ label {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
+
 input {
   padding: 0.5rem;
   width: 100%;

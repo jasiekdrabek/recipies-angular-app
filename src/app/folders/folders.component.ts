@@ -46,7 +46,9 @@ export class FoldersComponent implements OnInit {
   }
 
   getFolder(): void {
-    this.folderService.getFolders().subscribe(folders => this.availableFolders = folders)
+    this.folderService
+      .getFolders()
+      .subscribe((folders) => (this.availableFolders = folders));
     this.route.params.subscribe((routeParams) => {
       this.id = routeParams['id'];
     });
@@ -64,7 +66,7 @@ export class FoldersComponent implements OnInit {
     this.location.back();
   }
 
-  addRecipie(name: string, ingredients: string, preparation : string): void {
+  addRecipie(name: string, ingredients: string, preparation: string): void {
     name = name.trim();
     ingredients = ingredients.trim();
     preparation = preparation.trim();
@@ -75,16 +77,22 @@ export class FoldersComponent implements OnInit {
       if (recipies.map((recipie) => recipie.name).includes(name)) {
         return;
       }
-    
-    this.recipieService
-      .addRecipie({ name: name, ingredients: ingredients, preparation: preparation, parent:this.folder.id, favourite:false } as Recipie)
-      .subscribe((recipie: Recipie) => {
-        this.folder.recipies?.push(recipie);
-        this.folderService
-          .updateFolder(this.folder)
-          .subscribe((folder) => (this.folder = folder));
-        this.getFolder();
-      });
+
+      this.recipieService
+        .addRecipie({
+          name: name,
+          ingredients: ingredients,
+          preparation: preparation,
+          parent: this.folder.id,
+          favourite: false,
+        } as Recipie)
+        .subscribe((recipie: Recipie) => {
+          this.folder.recipies?.push(recipie);
+          this.folderService
+            .updateFolder(this.folder)
+            .subscribe((folder) => (this.folder = folder));
+          this.getFolder();
+        });
     });
   }
 
@@ -93,28 +101,28 @@ export class FoldersComponent implements OnInit {
     if (!name) {
       return;
     }
-    this.folderService.getFolders().subscribe((folders) =>{
-      console.log(folders)
-    if (folders?.map((folder) => folder.name).includes(name)) {
-      return;
-    }
-    const foldersList: Folder[] = [];
-    const recipiesList: Recipie[] = [];
-    this.folderService
-      .addFolder({
-        name: name,
-        parent: this.folder.id,
-        folders: foldersList,
-        recipies: recipiesList,
-      } as Folder)
-      .subscribe((folder: Folder) => {
-        this.folder.folders?.push(folder);
-        this.folderService
-          .updateFolder(this.folder)
-          .subscribe((folder) => (this.folder = folder));
-        this.getFolder();
-      });
-    })
+    this.folderService.getFolders().subscribe((folders) => {
+      console.log(folders);
+      if (folders?.map((folder) => folder.name).includes(name)) {
+        return;
+      }
+      const foldersList: Folder[] = [];
+      const recipiesList: Recipie[] = [];
+      this.folderService
+        .addFolder({
+          name: name,
+          parent: this.folder.id,
+          folders: foldersList,
+          recipies: recipiesList,
+        } as Folder)
+        .subscribe((folder: Folder) => {
+          this.folder.folders?.push(folder);
+          this.folderService
+            .updateFolder(this.folder)
+            .subscribe((folder) => (this.folder = folder));
+          this.getFolder();
+        });
+    });
   }
 
   deleteRecipie(recipie: Recipie, folder: Folder = this.folder): void {
@@ -180,21 +188,21 @@ export class FoldersComponent implements OnInit {
   }
 
   getUnavailableFolders(id = this.folder.id): void {
-    for(let j=0; j< this.availableFolders.length;j++){
-      if(this.availableFolders[j].id === this.folder.id){
-        this.availableFolders.splice(j,1);
+    for (let j = 0; j < this.availableFolders.length; j++) {
+      if (this.availableFolders[j].id === this.folder.id) {
+        this.availableFolders.splice(j, 1);
       }
     }
-    for(let j=0; j< this.availableFolders.length;j++){
-      if(this.availableFolders[j].id === this.folder.parent){
-        this.availableFolders.splice(j,1);
+    for (let j = 0; j < this.availableFolders.length; j++) {
+      if (this.availableFolders[j].id === this.folder.parent) {
+        this.availableFolders.splice(j, 1);
       }
     }
     this.folderService.getFolder(id).subscribe((folder) => {
       for (let i = 0; i < folder.folders.length; i++) {
-        for(let j=0; j< this.availableFolders.length;j++){
-          if(this.availableFolders[j].id === folder.folders[i].id){
-            this.availableFolders.splice(j,1);
+        for (let j = 0; j < this.availableFolders.length; j++) {
+          if (this.availableFolders[j].id === folder.folders[i].id) {
+            this.availableFolders.splice(j, 1);
           }
         }
         this.getUnavailableFolders(folder.folders[i].id);
@@ -202,15 +210,15 @@ export class FoldersComponent implements OnInit {
     });
   }
 
-  addOrRemoveFromFav(recipie : Recipie):void{
-    recipie.favourite = !recipie.favourite
+  addOrRemoveFromFav(recipie: Recipie): void {
+    recipie.favourite = !recipie.favourite;
     this.recipieService.updateRecipie(recipie).subscribe();
-    this.folderService.getFolder(recipie.parent).subscribe((folder) =>{
-      for(let i=0; i< folder.recipies.length;i++){
-        if(folder.recipies[i].id === recipie.id)
-        folder.recipies[i].favourite = recipie.favourite;
+    this.folderService.getFolder(recipie.parent).subscribe((folder) => {
+      for (let i = 0; i < folder.recipies.length; i++) {
+        if (folder.recipies[i].id === recipie.id)
+          folder.recipies[i].favourite = recipie.favourite;
       }
       this.folderService.updateFolder(folder).subscribe();
-        });
+    });
   }
 }

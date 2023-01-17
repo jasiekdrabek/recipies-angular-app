@@ -14,7 +14,7 @@ import { Folder } from '../folder';
 })
 export class RecipieDetailComponent {
   folders: Folder[] = [];
-  parent: Folder | undefined  
+  parent: Folder | undefined;
   constructor(
     private route: ActivatedRoute,
     private recipieService: RecipieService,
@@ -34,12 +34,14 @@ export class RecipieDetailComponent {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.recipieService.getRecipie(id).subscribe((recipie) => {
       this.recipie = recipie;
-      this.folderService.getFolder(this.recipie.parent).subscribe((folder) => this.parent = folder)
+      this.folderService
+        .getFolder(this.recipie.parent)
+        .subscribe((folder) => (this.parent = folder));
       this.folderService.getFolders().subscribe((folders) => {
         this.folders = folders;
-        for(let i=0;i<folders.length;i++){
-          if(folders[i].id == this.recipie?.parent){
-            folders.splice(i,1);
+        for (let i = 0; i < folders.length; i++) {
+          if (folders[i].id == this.recipie?.parent) {
+            folders.splice(i, 1);
           }
         }
       });
@@ -68,7 +70,9 @@ export class RecipieDetailComponent {
         folder.recipies.push(this.recipie as Recipie);
         this.folderService.updateFolder(folder).subscribe();
       });
-      this.recipieService.updateRecipie(this.recipie).subscribe(()=>this.getRecipie());
+      this.recipieService
+        .updateRecipie(this.recipie)
+        .subscribe(() => this.getRecipie());
     }
   }
 

@@ -7,7 +7,7 @@
           {{ parent?.name }}
         </h2>
       </mat-card-header>
-      <mat-card class ="mat-card-content">
+      <mat-card class="mat-card-content">
         <label for="recipie-name">Name: </label>
         <input
           id="recipie-name"
@@ -15,7 +15,7 @@
           placeholder="name"
         />
       </mat-card>
-      <mat-card class ="mat-card-content">
+      <mat-card class="mat-card-content">
         <label for="recipie-ingredients">Ingredients: </label>
         <textarea
           class="margin"
@@ -27,7 +27,7 @@
 [(ngModel)]="recipie.ingredients"</textarea
         >
       </mat-card>
-      <mat-card class ="mat-card-content">
+      <mat-card class="mat-card-content">
         <label for="recipie-preparation">Preparation: </label>
         <textarea
           id="recipie-preparation"
@@ -52,9 +52,11 @@
     <mat-form-field appearance="fill">
       <mat-label>Select new folder</mat-label>
       <mat-select id="move-to-new-folder" #newFolder>
-        <mat-option *ngFor="let folder of folders" value="{{ folder.id }}">{{folder.name}}</mat-option>
+        <mat-option *ngFor="let folder of folders" value="{{ folder.id }}">{{
+          folder.name
+        }}</mat-option>
       </mat-select>
-    </mat-form-field>    
+    </mat-form-field>
     <button type="button" (click)="moveToNewFolder(newFolder.value)">
       Move
     </button>

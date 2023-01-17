@@ -3,7 +3,7 @@ import { Folder } from './folder';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, filter, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Recipie } from './recipie';
 import { FoldersComponent } from './folders/folders.component';
 

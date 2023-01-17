@@ -4,15 +4,8 @@ label {
   font-weight: bold;
 }
 
-h2{
+h2 {
   color: white;
-}
-
-.block {
-  display: flex;
-  margin-top: 20px;
-  flex-direction: column;
-  max-width: 450px;
 }
 
 input {
@@ -41,7 +34,7 @@ button:disabled {
   cursor: auto;
 }
 
-.recipie-ingredients{
+.recipie-ingredients {
   margin-top: 20px;
   height: 200px;
   max-width: 100%;
@@ -53,35 +46,21 @@ button:disabled {
   margin-left: 20px;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  max-width: 250px;
-  width: 15em;
-  margin-left: 7%;
-  padding: 0;
-}
-
-.details{
-  min-width: 50%;
-}
-
-.left-button{
+.left-button {
   text-align: left;
   position: relative;
   left: 0;
   margin-left: 0;
 }
 
-.right-button{
+.right-button {
   text-align: right;
   position: relative;
   right: 0;
   margin-right: 0;
 }
 
-.mat-card{
+.mat-card {
   margin-left: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -90,15 +69,15 @@ button:disabled {
   height: fit-content;
 }
 
-.margin{
+.margin {
   margin-bottom: 20px;
 }
 
-.width70{
+.width70 {
   width: 70%;
 }
 
-.mat-card-content{
+.mat-card-content {
   margin-top: 20px;
   margin-bottom: 20px;
   margin-left: 20px;

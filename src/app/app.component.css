@@ -31,10 +31,10 @@ nav a:active {
 }
 
 .mat-focus-indicator::before {
-  border: none;    
+  border: none;
 }
 
-button.mat-menu-item:focus{
+button.mat-menu-item:focus {
   outline: none;
 }
 
@@ -45,4 +45,3 @@ button.mat-menu-item:focus{
 ::ng-deep .mat-button-focus-overlay {
   border: none !important;
 }
-

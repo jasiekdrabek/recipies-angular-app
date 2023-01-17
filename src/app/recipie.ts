@@ -4,5 +4,5 @@ export interface Recipie {
   name: string;
   ingredients: string;
   preparation: string;
-  favourite :boolean;
+  favourite: boolean;
 }

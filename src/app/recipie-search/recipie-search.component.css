@@ -97,36 +97,36 @@ input:focus {
   outline: #336699 auto 1px;
 }
 
-button.fav{
+button.fav {
   position: absolute;
   text-align: right;
   bottom: 10%;
   right: calc(20% + 20px);
   background-color: none;
-  border: none; 
+  border: none;
   cursor: pointer;
 }
 
-button.fav:hover{
+button.fav:hover {
   background-color: #eee;
 }
 
-.img-fav{
+.img-fav {
   height: 1em;
 }
 
-.mat-card-search{
+.mat-card-search {
   width: 20%;
   background-color: rgb(90, 90, 90);
   min-width: 220px;
   margin-bottom: 20px;
 }
 
-.search-label{
+.search-label {
   color: white;
 }
 
-.mat-card{
+.mat-card {
   background-color: rgb(90, 90, 90);
   width: 40%;
   height: fit-content;
@@ -134,11 +134,11 @@ button.fav:hover{
   margin-bottom: 20px;
 }
 
-.mat-card-content{
+.mat-card-content {
   width: 100%;
 }
 
-.mat-card-pagination{
+.mat-card-pagination {
   background-color: rgb(80, 80, 80);
   text-align: center;
   margin-left: auto;

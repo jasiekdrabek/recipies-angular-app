@@ -5,7 +5,7 @@
   padding: 0;
 }
 
-h2{
+h2 {
   color: white;
 }
 
@@ -74,21 +74,6 @@ h2{
   height: max-content;
 }
 
-.parent {
-  position: relative;
-  right: 10px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  max-width: 250px;
-  width: 15em;
-  margin-left: 7%;
-  padding: 0;
-}
-
 .grid {
   display: flex;
   flex-direction: row;
@@ -128,35 +113,31 @@ button.delete {
   color: red;
 }
 
-button.fav{
+button.fav {
   cursor: pointer;
   position: absolute;
   text-align: right;
   bottom: 10%;
   right: calc(20% + 20px);
   background-color: none;
-  border: none; 
+  border: none;
 }
 
-button.fav:hover{
+button.fav:hover {
   background-color: #eee;
 }
 
-.img-fav{
+.img-fav {
   height: 1em;
 }
 
-.recipie-ingredients{
+.recipie-ingredients {
   margin-top: 20px;
   height: 200px;
   width: 100%;
 }
 
-.drop-dawn{
-  min-width: 70%;
-}
-
-.mat-card{
+.mat-card {
   background-color: rgb(90, 90, 90);
   width: 40%;
   height: fit-content;
@@ -166,11 +147,11 @@ button.fav:hover{
   margin-right: 20px;
 }
 
-.margin{
+.margin {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-label{
+label {
   color: white;
 }

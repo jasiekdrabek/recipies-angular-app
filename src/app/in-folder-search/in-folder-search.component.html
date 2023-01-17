@@ -22,16 +22,15 @@
             <span class="name">{{ folder.name }}</span>
             <span>
               <button
-            type="button"
-            class="delete"
-            title="delete folder"
-            (click)="deleteFolder(folder.id)"
-          >
-            x
-          </button>
+                type="button"
+                class="delete"
+                title="delete folder"
+                (click)="deleteFolder(folder.id)"
+              >
+                x
+              </button>
             </span>
           </a>
-          
         </li>
         <li *ngFor="let recipie of recipies$ | async">
           <a routerLink="/detail/{{ recipie.id }}">
@@ -64,14 +63,15 @@
             </span>
             <span>
               <button
-              type="button"
-              class="delete"
-              title="delete recipie"
-              (click)="deleteRecipie(recipie)"
+                type="button"
+                class="delete"
+                title="delete recipie"
+                (click)="deleteRecipie(recipie)"
+              >
+                x
+              </button></span
             >
-              x
-            </button></span>
-          </a>          
+          </a>
         </li>
       </ul>
     </mat-card-content>

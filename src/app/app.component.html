@@ -1,7 +1,6 @@
 <mat-toolbar color="primary">
   <span class="fill-remaining-space">
     <button
-    
       mat-icon-button
       [matMenuTriggerFor]="menu"
       #menuTrigger="matMenuTrigger"
@@ -11,16 +10,31 @@
     </button>
     <mat-menu #menu="matMenu" [overlapTrigger]="false">
       <span (mouseleave)="menuTrigger.closeMenu()">
-        <button routerLink="/dashboard" mat-menu-item [routerLinkActive]="['is-active']" id="home">          
-          <mat-icon >home</mat-icon>
-          <span >Home</span>
+        <button
+          routerLink="/dashboard"
+          mat-menu-item
+          [routerLinkActive]="['is-active']"
+          id="home"
+        >
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
         </button>
-        <button routerLink="/recipies" mat-menu-item [routerLinkActive]="['is-active']" id="recipies">          
-          <span >All recipes</span>
+        <button
+          routerLink="/recipies"
+          mat-menu-item
+          [routerLinkActive]="['is-active']"
+          id="recipies"
+        >
+          <span>All recipes</span>
         </button>
-        <button routerLink="/folder/0" mat-menu-item [routerLinkActive]="['is-active']" id="folders">          
-          <span >Folders with recipes</span>
-        </button>        
+        <button
+          routerLink="/folder/0"
+          mat-menu-item
+          [routerLinkActive]="['is-active']"
+          id="folders"
+        >
+          <span>Folders with recipes</span>
+        </button>
       </span>
     </mat-menu>
   </span>
