@@ -3,7 +3,6 @@
   margin: 0 0 2em 0;
   list-style-type: none;
   padding: 0;
-  width: 15em;
 }
 
 .search-recipies li {
@@ -21,10 +20,10 @@
   background-color: #eee;
   margin: 0.5em;
   padding: 0.3em 0;
-  height: 1.6em;
+  height: 1.65em;
   border-radius: 4px;
   display: block;
-  width: 100%;
+  width: 80%;
 }
 
 .search-recipies a:hover {
@@ -47,7 +46,7 @@
   position: relative;
   left: -1px;
   top: -4px;
-  height: 1.8em;
+  height: 1.6em;
   min-width: 16px;
   text-align: right;
   margin-right: 0.8em;
@@ -70,13 +69,12 @@
 
 button.delete {
   position: absolute;
-  left: 220px;
-  top: 5px;
+  text-align: right;
+  bottom: 20%;
+  right: 20%;
   background-color: none;
+  border: none;
   color: red;
-  font-size: 1.1rem;
-  margin: 0;
-  padding: 1px 10px 3px 10px;
 }
 
 label {
@@ -100,12 +98,11 @@ input:focus {
 
 button.fav{
   position: absolute;
-  left: 190px;
-  top: 5px;
+  text-align: right;
+  bottom: 10%;
+  right: calc(20% + 20px);
   background-color: none;
-  font-size: 1.1rem;
-  margin: 0;
-  padding: 1px 10px 3px 10px;  
+  border: none; 
 }
 
 button.fav:hover{
@@ -114,4 +111,31 @@ button.fav:hover{
 
 .img-fav{
   height: 1em;
+}
+
+.mat-card-search{
+  width: 20%;
+  background-color: rgb(90, 90, 90);
+  min-width: 220px;
+  margin-bottom: 20px;
+}
+
+.search-label{
+  color: white;
+}
+
+.mat-card{
+  background-color: rgb(90, 90, 90);
+  width: 40%;
+}
+
+.mat-card-content{
+  width: 100%;
+}
+
+.mat-card-pagination{
+  background-color: rgb(80, 80, 80);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }

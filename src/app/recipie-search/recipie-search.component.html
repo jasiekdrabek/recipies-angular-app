@@ -1,63 +1,89 @@
 <div id="search-component">
-  <label for="search-box">Szukaj przepisów:</label>
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-  <ul class="search-recipies">
-    <li
-      *ngFor="
-        let recipie of recipies$
-          | async
-          | paginate
-            : {
-                itemsPerPage: tableSize,
-                currentPage: page,
-                totalItems: count,
-                id: 'search'
-              }
-      "
+  <mat-card class="mat-card-search">
+    <mat-card-header
+      ><label class="search-label" for="search-box"
+        >Search recipes:</label
+      ></mat-card-header
     >
-      <a routerLink="/detail/{{ recipie.id }}">
-        <span class="badge"
-          ><img
-            class="image"
-            [src]="
-              'https://www.iconpacks.net/icons/2/free-file-icon-1453-thumb.png'
-            "
-        /></span>
-        <span class="name">{{ recipie.name }}</span>
-      </a>
-      <button
-        type="button"
-        class="delete"
-        title="delete recipie"
-        (click)="deleteRecipie(recipie)"
-      >
-        x
-      </button>
-      <button
-        type="button"
-        class="fav"
-        title="add/remove from fav"
-        (click)="addOrRemoveFromFav(recipie)"
-      >
-        <img
-          *ngIf="recipie.favourite"
-          class="img-fav"
-          src="https://img.icons8.com/color/512/hearts.png"
-        />
-        <img
-          *ngIf="!recipie.favourite"
-          class="img-fav"
-          src="https://img.icons8.com/windows/512/hearts.png"
-        />
-      </button>
-    </li>
-  </ul>
-  <pagination-controls
-    *ngIf="currentSearchTerm !== ''"
-    id="search"
-    previousLabel="Prev"
-    nextLabel="Next"
-    (pageChange)="onTableDataChange($event)"
-  >
-  </pagination-controls>
+    <mat-card-content>
+      <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="mat-card">
+    <mat-card-content>
+      <ul class="search-recipies">
+        <li
+          *ngFor="
+            let recipie of recipies$
+              | async
+              | paginate
+                : {
+                    itemsPerPage: tableSize,
+                    currentPage: page,
+                    totalItems: count,
+                    id: 'search'
+                  }
+          "
+        >
+          <a routerLink="/detail/{{ recipie.id }}">
+            <span class="badge"
+              ><img
+                class="image"
+                [src]="
+                  'https://www.iconpacks.net/icons/2/free-file-icon-1453-thumb.png'
+                "
+            /></span>
+            <span class="name">{{ recipie.name }}</span>
+            <span>
+              <button
+                type="button"
+                class="fav"
+                title="add/remove from fav"
+                (click)="addOrRemoveFromFav(recipie)"
+              >
+                <img
+                  *ngIf="recipie.favourite"
+                  class="img-fav"
+                  src="https://img.icons8.com/color/512/hearts.png"
+                />
+                <img
+                  *ngIf="!recipie.favourite"
+                  class="img-fav"
+                  src="https://img.icons8.com/windows/512/hearts.png"
+                />
+              </button>
+            </span>
+            <span>
+              <button
+                type="button"
+                class="delete"
+                title="delete recipie"
+                (click)="deleteRecipie(recipie)"
+              >
+                x
+              </button>
+            </span>
+          </a>
+          <button
+            type="button"
+            class="delete"
+            title="delete recipie"
+            (click)="deleteRecipie(recipie)"
+          >
+            x
+          </button>
+        </li>
+      </ul>
+      <mat-card class="mat-card-pagination">
+        <pagination-controls
+          *ngIf="currentSearchTerm !== ''"
+          id="search"
+          previousLabel="Prev"
+          nextLabel="Next"
+          (pageChange)="onTableDataChange($event)"
+        >
+        </pagination-controls>
+      </mat-card>
+    </mat-card-content>
+  </mat-card>
 </div>
