@@ -1,6 +1,10 @@
-<h2>Najlepsze przepisy</h2>
-<div class="recipies-menu">
-  <a *ngFor="let recipie of recipies" routerLink="/detail/{{ recipie.id }}">
-    {{ recipie.name }}
-  </a>
-</div>
+<mat-card>
+  <mat-card-header>
+    <h2>Best recipes</h2>
+  </mat-card-header>
+  <mat-card-content>
+    <a *ngFor="let recipie of recipies" routerLink="/detail/{{ recipie.id }}">
+      {{ recipie.name }}
+    </a>
+  </mat-card-content>
+</mat-card>
