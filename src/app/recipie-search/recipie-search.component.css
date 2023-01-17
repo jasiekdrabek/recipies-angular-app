@@ -75,6 +75,7 @@ button.delete {
   background-color: none;
   border: none;
   color: red;
+  cursor: pointer;
 }
 
 label {
@@ -103,6 +104,7 @@ button.fav{
   right: calc(20% + 20px);
   background-color: none;
   border: none; 
+  cursor: pointer;
 }
 
 button.fav:hover{
@@ -127,6 +129,9 @@ button.fav:hover{
 .mat-card{
   background-color: rgb(90, 90, 90);
   width: 40%;
+  height: fit-content;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .mat-card-content{

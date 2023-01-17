@@ -20,6 +20,8 @@ import {MatIconModule} from '@angular/material/icon'
 import {MatMenuModule} from '@angular/material/menu'
 import {MatCardModule} from '@angular/material/card'
 import {MatButtonModule} from '@angular/material/button'
+import {MatFormFieldModule} from '@angular/material/form-field'
+import {MatSelectModule} from '@angular/material/select'
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import {MatButtonModule} from '@angular/material/button'
     MatMenuModule,
     MatCardModule,
     MatButtonModule,
+    MatSelectModule,
+    MatFormFieldModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
     }),

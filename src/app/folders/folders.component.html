@@ -1,133 +1,190 @@
-<h2>JESTEŚ TERAZ W FOLDERZE: {{folder.name | uppercase}}</h2>
 <div class="grid">
-  <div>
-    <app-in-folder-search
-      [(folder)]="folder"
-      [(currentSearchTerm)]="term"
-    ></app-in-folder-search>
-    <ul *ngIf="term === ''" class="folders">
-      <a
-        *ngIf="parent.id != folder?.id"
-        class="parent"
-        routerLink="/folder/{{ parent.id }}"
-      >
-        <span class="badge"
-          ><img
-            class="image"
-            [src]="
-              'https://www.iconpacks.net/icons/2/free-folder-icon-1484-thumb.png'
-            "
-        /></span>
-        <span class="name"> {{ parent.name }}</span>
-      </a>
-      <li *ngFor="let folder of folder?.folders">
-        <a routerLink="/folder/{{ folder.id }}">
-          <span class="badge"
-            ><img
-              class="image"
-              [src]="
-                'https://www.iconpacks.net/icons/2/free-folder-icon-1484-thumb.png'
-              "
-          /></span>
-          <span class="name">{{ folder.name }}</span>
-        </a>
-        <button
-          type="button"
-          class="delete"
-          title="delete folder"
-          (click)="deleteFolder(folder.id)"
-        >
-          x
-        </button>
-      </li>
-      <li *ngFor="let recipie of folder?.recipies">
-        <a routerLink="/detail/{{ recipie.id }}">
-          <span class="badge"
-            ><img
-              class="image"
-              [src]="
-                'https://www.iconpacks.net/icons/2/free-file-icon-1453-thumb.png'
-              "
-          /></span>
-          <span class="name">{{ recipie.name }}</span>
-        </a>
-        <button
-          type="button"
-          class="delete"
-          title="delete recipie"
-          (click)="deleteRecipie(recipie)"
-        >
-          x
-        </button>
-        <button
-          type="button"
-          class="fav"
-          title="add/remove from fav"
-          (click)="addOrRemoveFromFav(recipie)"
-        >
-          <img *ngIf="recipie.favourite" class="img-fav" src="https://img.icons8.com/color/512/hearts.png"/>
-          <img *ngIf="!recipie.favourite" class="img-fav" src="https://img.icons8.com/windows/512/hearts.png"/>
-        </button>
-      </li>
-    </ul>
-  </div>
-  <div class="form">
-    <h2>Dodaj przepis w tym folderze</h2>
-    <label for="new-recipie">Nazwa przepisu: </label>
-    <input id="new-recipie" #recipieName />
-    <label for="new-recipie">Składniki: </label>
-    <textarea
-      class="recipie-ingredients"
-      ingridients="new-recipie"
-      aria-multiline="true"
-      #recipieIngredients
-    ></textarea>
-    <label for="new-recipie">Przygotowanie: </label>
-    <textarea
-      preparation="recipie-preparation"
-      class="recipie-ingredients"
-      aria-multiline="true"
-      #recipiePreparation
-    ></textarea>
-    <button
-      type="button"
-      class="add-button"
-      (click)="
-        addRecipie(
-          recipieName.value,
-          recipieIngredients.value,
-          recipiePreparation.value
-        );
-        recipieName.value = '';
-        recipieIngredients.value = '';
-        recipiePreparation.value = ''
-      "
+  <mat-card class="mat-card">
+    <mat-card-header
+      ><h2>
+        You are in folder: {{ folder.name | uppercase }}
+      </h2></mat-card-header
     >
-      Dodaj przepis
-    </button>
-  </div>
 
-  <div class="form">
-    <h2>Dodaj folder w tym folderze</h2>
-    <label for="new-folder">Nazwa: </label>
-    <input id="new-folder" #folderName />
-    <button
-      type="button"
-      class="add-button"
-      (click)="addFolder(folderName.value); folderName.value = ''"
-    >
-      Dodaj folder
-    </button>
-    <div *ngIf="availableFolders.length !== 0">
-      <h2>Przenieś do nowego folderu</h2>
-      <select class="drop-dawn" id="move-to-new-folder" #newFolder>
-        <option *ngFor="let folder of availableFolders" value="{{ folder.id }}">
-          {{ folder.name }}
-        </option>
-      </select>
-      <button type="button" (click)="moveToNewFolder(newFolder.value)">
-        Przenieś
+    <mat-card-content>
+      <app-in-folder-search
+        [(folder)]="folder"
+        [(currentSearchTerm)]="term"
+      ></app-in-folder-search>
+      <mat-card>
+        <mat-card-content *ngIf="term === ''">
+          <ul class="folders">
+            <a
+              *ngIf="parent.id != folder?.id"
+              class="parent"
+              routerLink="/folder/{{ parent.id }}"
+            >
+              <span class="badge"
+                ><img
+                  class="image"
+                  [src]="
+                    'https://www.iconpacks.net/icons/2/free-folder-icon-1484-thumb.png'
+                  "
+              /></span>
+              <span class="name"> {{ parent.name }}</span>
+            </a>
+            <li *ngFor="let folder of folder?.folders">
+              <a routerLink="/folder/{{ folder.id }}">
+                <span class="badge"
+                  ><img
+                    class="image"
+                    [src]="
+                      'https://www.iconpacks.net/icons/2/free-folder-icon-1484-thumb.png'
+                    "
+                /></span>
+                <span class="name">{{ folder.name }}</span>
+                <span>
+                  <button
+                    type="button"
+                    class="delete"
+                    title="delete folder"
+                    (click)="deleteFolder(folder.id)"
+                  >
+                    x
+                  </button>
+                </span>
+              </a>
+            </li>
+            <li *ngFor="let recipie of folder?.recipies">
+              <a routerLink="/detail/{{ recipie.id }}">
+                <span class="badge"
+                  ><img
+                    class="image"
+                    [src]="
+                      'https://www.iconpacks.net/icons/2/free-file-icon-1453-thumb.png'
+                    "
+                /></span>
+                <span class="name">{{ recipie.name }}</span>
+                <span>
+                  <button
+                    type="button"
+                    class="fav"
+                    title="add/remove from fav"
+                    (click)="addOrRemoveFromFav(recipie)"
+                  >
+                    <img
+                      *ngIf="recipie.favourite"
+                      class="img-fav"
+                      src="https://img.icons8.com/color/512/hearts.png"
+                    />
+                    <img
+                      *ngIf="!recipie.favourite"
+                      class="img-fav"
+                      src="https://img.icons8.com/windows/512/hearts.png"
+                    />
+                  </button>
+                </span>
+                <span>
+                  <button
+                    type="button"
+                    class="delete"
+                    title="delete recipie"
+                    (click)="deleteRecipie(recipie)"
+                  >
+                    x
+                  </button>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="mat-card">
+    <mat-card-header>
+      <h2>Add recipe in this folder</h2>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card class="margin">
+        <mat-card-content>
+          <label for="new-recipie">Name: </label>
+          <input id="new-recipie" #recipieName />
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="margin">
+        <mat-card-content>
+          <label for="new-recipie">Ingredients: </label>
+          <textarea
+            class="recipie-ingredients"
+            ingridients="new-recipie"
+            aria-multiline="true"
+            #recipieIngredients
+          ></textarea>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="margin">
+        <mat-card-content>
+          <label for="new-recipie">Preparation: </label>
+          <textarea
+            preparation="recipie-preparation"
+            class="recipie-ingredients"
+            aria-multiline="true"
+            #recipiePreparation
+          ></textarea>
+        </mat-card-content>
+      </mat-card>
+      <button
+        type="button"
+        class="button"
+        (click)="
+          addRecipie(
+            recipieName.value,
+            recipieIngredients.value,
+            recipiePreparation.value
+          );
+          recipieName.value = '';
+          recipieIngredients.value = '';
+          recipiePreparation.value = ''
+        "
+      >
+        Add recipe
       </button>
-    </div>
-  </div>
+    </mat-card-content>
+  </mat-card >
+  <mat-card class="mat-card">
+    <mat-card-content>
+    <mat-card class="margin">
+      <mat-card-header>
+        <h2>Add folder in this folder</h2>
+      </mat-card-header>
+<mat-card-content>
+  <label for="new-folder">Name: </label>
+      <input id="new-folder" #folderName />
+</mat-card-content>
+</mat-card>
+      <button
+      class="button"
+        type="button"
+        (click)="addFolder(folderName.value); folderName.value = ''"
+      >
+        Add folder
+      </button>
+
+    <mat-card *ngIf="availableFolders.length !== 0" class="margin">
+      <mat-card-header>
+        <h2>Move to another folder</h2>
+      </mat-card-header>
+      <mat-form-field appearance="fill">
+        <mat-label>Select new folder</mat-label>
+        <mat-select  [(ngModel)]="selectedValue" id="move-to-new-folder" #newFolder>
+          <mat-option
+            *ngFor="let folder of availableFolders"
+            [value]=" folder.id "
+            >{{ folder.name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </mat-card>
+      <button class="button" type="button" (click)="moveToNewFolder(selectedValue)">
+        Move
+      </button>
+    
+    </mat-card-content>
+  </mat-card>
 </div>

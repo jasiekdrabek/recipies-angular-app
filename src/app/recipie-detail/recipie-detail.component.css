@@ -1,7 +1,11 @@
 /* RecipieDetailComponent's private CSS styles */
 label {
-  color: #435960;
+  color: white;
   font-weight: bold;
+}
+
+h2{
+  color: white;
 }
 
 .block {
@@ -22,6 +26,9 @@ button {
   padding: 1rem;
   border-radius: 4px;
   font-size: 1rem;
+  margin-bottom: 20px;
+  margin-left: 0;
+  margin-right: auto;
 }
 
 button:hover {
@@ -37,6 +44,7 @@ button:disabled {
 .recipie-ingredients{
   margin-top: 20px;
   height: 200px;
+  max-width: 100%;
 }
 
 .grid {
@@ -57,4 +65,43 @@ button:disabled {
 
 .details{
   min-width: 50%;
+}
+
+.left-button{
+  text-align: left;
+  position: relative;
+  left: 0;
+  margin-left: 0;
+}
+
+.right-button{
+  text-align: right;
+  position: relative;
+  right: 0;
+  margin-right: 0;
+}
+
+.mat-card{
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: rgb(70, 70, 70);
+  width: 25%;
+  height: fit-content;
+}
+
+.margin{
+  margin-bottom: 20px;
+}
+
+.width70{
+  width: 70%;
+}
+
+.mat-card-content{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: rgb(70, 70, 70);
 }

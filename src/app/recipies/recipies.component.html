@@ -1,11 +1,11 @@
-<mat-card>
-  <mat-card-header> <h2>Moje przepisy</h2></mat-card-header>
+<mat-card class="mat-card">
+  <mat-card-header> <h2>My recipes</h2></mat-card-header>
   <mat-card-content>
     <app-recipie-search
       [(recipies)]="recipies"
       [(currentSearchTerm)]="term"
     ></app-recipie-search>
-    <mat-card class="mat-card">
+    <mat-card >
       <mat-card-content *ngIf="term === ''">
         <ul class="recipies">
           <li
@@ -20,15 +20,15 @@
                     }
             "
           >
-            <a routerLink="/detail/{{ recipie.id }}">
-              <span class="badge"
+            <a >
+              <span class="badge " routerLink="/detail/{{ recipie.id }}"
                 ><img
                   class="image"
                   [src]="
                     'https://www.iconpacks.net/icons/2/free-file-icon-1453-thumb.png'
                   "
-              /></span>
-              <span class="name">{{ recipie.name }}</span>
+              /></span >
+              <span routerLink="/detail/{{ recipie.id }}" class="name">{{ recipie.name }}</span>
 
               <span>
                 <button

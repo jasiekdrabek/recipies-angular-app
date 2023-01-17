@@ -38,3 +38,7 @@ a {
 a:hover {
   background-color: #000;
 }
+
+.mat-card-content{
+  text-align: center;
+}

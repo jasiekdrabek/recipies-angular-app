@@ -1,20 +1,24 @@
 <div class="grid">
-  <div class="details">
+  <mat-card class="mat-card width70">
     <div *ngIf="recipie">
-      <h2>{{ recipie.name | uppercase }}</h2>
-      <h3>Przepis z folderu {{parent?.name}}</h3>
-      <button type="button" (click)="save()">Zapisz</button>
-      <div class="block">
-        <label for="recipie-name">Nazwa przepisu: </label>
+      <mat-card-header>
+        <h2>
+          {{ recipie.name | uppercase }} <br />Recipe from folder:
+          {{ parent?.name }}
+        </h2>
+      </mat-card-header>
+      <mat-card class ="mat-card-content">
+        <label for="recipie-name">Name: </label>
         <input
           id="recipie-name"
           [(ngModel)]="recipie.name"
           placeholder="name"
         />
-      </div>
-      <div class="block">
-        <label for="recipie-ingredients">Składnki: </label>
+      </mat-card>
+      <mat-card class ="mat-card-content">
+        <label for="recipie-ingredients">Ingredients: </label>
         <textarea
+          class="margin"
           id="recipie-ingredients"
           class="recipie-ingredients"
           [(ngModel)]="recipie.ingredients"
@@ -22,9 +26,9 @@
         >
 [(ngModel)]="recipie.ingredients"</textarea
         >
-      </div>
-      <div class="block">
-        <label for="recipie-preparation">Przygotowanie: </label>
+      </mat-card>
+      <mat-card class ="mat-card-content">
+        <label for="recipie-preparation">Preparation: </label>
         <textarea
           id="recipie-preparation"
           class="recipie-ingredients"
@@ -33,19 +37,26 @@
         >
 [(ngModel)]="recipie.preparation"</textarea
         >
-      </div>
+      </mat-card>
     </div>
-    <button type="button" (click)="goBack()">Wróc na poprzednią stronę</button>
-  </div>
-  <div class="form">
-      <h2>Przenieś do nowego folderu</h2>
-      <select class="drop-dawn" id="move-to-new-folder" #newFolder>
-        <option *ngFor="let folder of folders" value="{{ folder.id }}">
-          {{ folder.name }}
-        </option>
-      </select>
-      <button type="button" (click)="moveToNewFolder(newFolder.value)">
-        Przenieś
+    <div>
+      <button class="left-button" type="button" (click)="save()">Save</button>
+      <button class="right-button" type="button" (click)="goBack()">
+        Go back
       </button>
-  </div>
+    </div>
+  </mat-card>
+
+  <mat-card class="mat-card">
+    <h2>Move to another folder</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Select new folder</mat-label>
+      <mat-select id="move-to-new-folder" #newFolder>
+        <mat-option *ngFor="let folder of folders" value="{{ folder.id }}">{{folder.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>    
+    <button type="button" (click)="moveToNewFolder(newFolder.value)">
+      Move
+    </button>
+  </mat-card>
 </div>

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'Aplikacja do przeglądania i katalogowania przepisów';
+  title = 'Recipe app';
 }

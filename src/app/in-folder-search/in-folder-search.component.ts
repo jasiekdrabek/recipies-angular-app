@@ -81,4 +81,16 @@ export class InFolderSearchComponent implements OnInit,OnChanges {
       });
     });
   }
+
+  addOrRemoveFromFav(recipie : Recipie):void{
+    recipie.favourite = !recipie.favourite
+    this.recipieService.updateRecipie(recipie).subscribe();
+    this.folderService.getFolder(recipie.parent).subscribe((folder) =>{
+      for(let i=0; i< folder.recipies.length;i++){
+        if(folder.recipies[i].id === recipie.id)
+        folder.recipies[i].favourite = recipie.favourite;
+      }
+      this.folderService.updateFolder(folder).subscribe();
+        });
+  }
 }

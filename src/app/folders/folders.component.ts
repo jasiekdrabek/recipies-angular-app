@@ -12,6 +12,7 @@ import { RecipieService } from '../recipie.service';
   styleUrls: ['./folders.component.css'],
 })
 export class FoldersComponent implements OnInit {
+  selectedValue!: string;
   folder: Folder = {
     id: 0,
     folders: [],

@@ -3,7 +3,6 @@
   margin: 0 0 2em 0;
   list-style-type: none;
   padding: 0;
-  width: 15em;
 }
 .search li {
   position: relative;
@@ -20,10 +19,10 @@
   background-color: #eee;
   margin: 0.5em;
   padding: 0.3em 0;
-  height: 1.6em;
+  height: 1.75em;
   border-radius: 4px;
   display: block;
-  width: 100%;
+  width: 80%;
 }
 
 .search a:hover {
@@ -36,6 +35,10 @@
   color: #fafafa;
 }
 
+label{
+  color: white;
+}
+
 .search .badge {
   display: inline-block;
   font-size: small;
@@ -46,7 +49,7 @@
   position: relative;
   left: -1px;
   top: -4px;
-  height: 1.8em;
+  height: 1.7em;
   min-width: 16px;
   text-align: right;
   margin-right: 0.8em;
@@ -58,7 +61,7 @@
   border: none;
   left: -1px;
   top: -4px;
-  height: 1.8em;
+  height: 1.7em;
   min-width: 16px;
 }
 
@@ -69,13 +72,27 @@
 
 button.delete {
   position: absolute;
-  left: 220px;
-  top: 5px;
+  text-align: right;
+  bottom: 20%;
+  right: 20%;
+  cursor: pointer;
   background-color: none;
+  border: none;
   color: red;
-  font-size: 1.1rem;
-  margin: 0;
-  padding: 1px 10px 3px 10px;
+}
+
+button.fav{
+  cursor: pointer;
+  position: absolute;
+  text-align: right;
+  bottom: 10%;
+  right: calc(20% + 20px);
+  background-color: none;
+  border: none; 
+}
+
+.img-fav{
+  height: 1em;
 }
 
 label {
