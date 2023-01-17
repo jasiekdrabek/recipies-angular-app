@@ -1,5 +1,9 @@
 # recipes-angular-app
 
+## Firebase deploy
+
+[angular-recipe-app](https://angular-recipe-app-e3341.web.app/)
+
 ## App screenshots
 
 ### Home page
