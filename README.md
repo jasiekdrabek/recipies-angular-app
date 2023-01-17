@@ -1,4 +1,4 @@
-# recipies-angular-app
+# recipes-angular-app
 
 ## App screenshots
 
