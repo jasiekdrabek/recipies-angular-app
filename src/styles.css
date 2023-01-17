@@ -1,44 +1,9 @@
-/* Application-wide Styles */
-h1 {
-    color:aqua;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 200%;
-  }
-  h2, h3 {
-    color:darkgrey;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: lighter;
-  }
-  body {
-    margin: 2em;
-  }
-  body, input[type="text"], button {
-    color:dimgrey;
-    font-family: Cambria, Georgia, serif;
-  }
-  button {
-    background-color: #eee;
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
-    color: black;
-    font-size: 1.2rem;
-    padding: 1rem;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-  }
-  button:hover {
-    background-color: black;
-    color: white;
-  }
-  button:disabled {
-    background-color: #eee;
-    color: #aaa;
-    cursor: auto;
-  }
-  
-  /* everywhere else */
-  * {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+ background-color: rgb(50, 50, 50);
+  --mat-focus-indicator-border-width: 0;
+  --mat-mdc-focus-indicator-border-width: 0;
+}
+button.mat-menu-item:focus{
+  outline: none;
+}
