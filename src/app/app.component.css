@@ -19,3 +19,30 @@ nav a:hover {
 nav a:active {
   background-color: black;
 }
+
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.is-active {
+  background-color: gray;
+}
+
+.mat-focus-indicator::before {
+  border: none;    
+}
+
+button.mat-menu-item:focus{
+  outline: none;
+}
+
+::ng-deep .mat-button {
+  border: none !important;
+}
+
+::ng-deep .mat-button-focus-overlay {
+  border: none !important;
+}
+
