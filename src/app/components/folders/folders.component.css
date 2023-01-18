@@ -12,10 +12,15 @@ h2 {
 .folders li {
   position: relative;
   cursor: pointer;
+  left: 20px;
 }
 
 .folders li:hover {
-  left: 0.1em;
+  left: 22px;
+}
+
+input{
+  width: 100%;
 }
 
 .folders a {
