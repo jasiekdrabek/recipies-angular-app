@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipieService } from '../recipie.service';
-import { Recipie } from '../recipie';
-import { FolderService } from '../folder.service';
-import { Folder } from '../folder';
+import { RecipieService } from '../../services/recipie.service';
+import { Recipie } from '../../interfaces/recipie';
+import { FolderService } from '../../services/folder.service';
+import { Folder } from '../../interfaces/folder';
 
 @Component({
   selector: 'app-recipies',

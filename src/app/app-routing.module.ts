@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RecipiesComponent } from './recipies/recipies.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RecipieDetailComponent } from './recipie-detail/recipie-detail.component';
 import { FoldersComponent } from './folders/folders.component';
 

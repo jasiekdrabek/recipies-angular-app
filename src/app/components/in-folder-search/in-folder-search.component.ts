@@ -9,10 +9,10 @@ import {
 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { Folder } from '../folder';
-import { FolderService } from '../folder.service';
-import { Recipie } from '../recipie';
-import { RecipieService } from '../recipie.service';
+import { Folder } from '../../interfaces/folder';
+import { FolderService } from '../../services/folder.service';
+import { Recipie } from '../../interfaces/recipie';
+import { RecipieService } from '../../services/recipie.service';
 
 @Component({
   selector: 'app-in-folder-search',

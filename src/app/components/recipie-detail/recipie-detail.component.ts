@@ -2,10 +2,10 @@ import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { RecipieService } from '../recipie.service';
-import { Recipie } from '../recipie';
-import { FolderService } from '../folder.service';
-import { Folder } from '../folder';
+import { RecipieService } from '../../services/recipie.service';
+import { Recipie } from '../../interfaces/recipie';
+import { FolderService } from '../../services/folder.service';
+import { Folder } from '../../interfaces/folder';
 
 @Component({
   selector: 'app-recipie-detail',
@@ -35,7 +35,7 @@ export class RecipieDetailComponent {
     this.recipieService.getRecipie(id).subscribe((recipie) => {
       this.recipie = recipie;
       this.folderService
-        .getFolder(this.recipie.parent)
+        .getFolder(this.recipie?.parent)
         .subscribe((folder) => (this.parent = folder));
       this.folderService.getFolders().subscribe((folders) => {
         this.folders = folders;

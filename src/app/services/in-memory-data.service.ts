@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Folder } from './folder';
-import { Recipie } from './recipie';
+import { Folder } from '../interfaces/folder';
+import { Recipie } from '../interfaces/recipie';
 
 @Injectable({
   providedIn: 'root',

@@ -9,10 +9,10 @@ import {
 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
-import { Folder } from '../folder';
-import { Recipie } from '../recipie';
-import { RecipieService } from '../recipie.service';
-import { FolderService } from '../folder.service';
+import { Folder } from '../../interfaces/folder';
+import { Recipie } from '../../interfaces/recipie';
+import { RecipieService } from '../../services/recipie.service';
+import { FolderService } from '../../services/folder.service';
 
 @Component({
   selector: 'app-recipie-search',

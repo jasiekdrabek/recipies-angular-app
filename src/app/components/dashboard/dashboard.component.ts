@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipie } from '../recipie';
-import { RecipieService } from '../recipie.service';
+import { Recipie } from '../../interfaces/recipie';
+import { RecipieService } from '../../services/recipie.service';
 
 @Component({
   selector: 'app-dashboard',

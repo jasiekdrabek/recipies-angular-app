@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Folder } from './folder';
+import { Folder } from '../interfaces/folder';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
-import { Recipie } from './recipie';
-import { FoldersComponent } from './folders/folders.component';
+import { Recipie } from '../interfaces/recipie';
+import { FoldersComponent } from '../components/folders/folders.component';
 
 @Injectable({
   providedIn: 'root',

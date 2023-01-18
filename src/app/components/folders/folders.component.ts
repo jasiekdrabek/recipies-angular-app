@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FolderService } from '../folder.service';
-import { Folder } from '../folder';
+import { FolderService } from '../../services/folder.service';
+import { Folder } from '../../interfaces/folder';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { Recipie } from '../recipie';
-import { RecipieService } from '../recipie.service';
+import { Recipie } from '../../interfaces/recipie';
+import { RecipieService } from '../../services/recipie.service';
 
 @Component({
   selector: 'app-folders',
@@ -163,7 +163,7 @@ export class FoldersComponent implements OnInit {
     this.folderService.getFolder(newFolderId).subscribe((newFolder) => {
       if (
         newFolder.folders
-          .map((folder) => folder.name)
+          .map((folder: { name: any; }) => folder.name)
           .includes(this.folder.name)
       ) {
         return;
