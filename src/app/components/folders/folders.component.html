@@ -130,6 +130,8 @@
         </mat-card-content>
       </mat-card>
       <button
+        mat-button
+        color="primary"
         type="button"
         class="button"
         (click)="
@@ -159,6 +161,8 @@
         </mat-card-content>
       </mat-card>
       <button
+        mat-button
+        color="primary"
         class="button"
         type="button"
         (click)="addFolder(folderName.value); folderName.value = ''"
@@ -186,6 +190,9 @@
         </mat-form-field>
       </mat-card>
       <button
+        *ngIf="availableFolders.length !== 0"
+        mat-button
+        color="primary"
         class="button"
         type="button"
         (click)="moveToNewFolder(selectedValue)"

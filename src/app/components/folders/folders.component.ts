@@ -163,7 +163,7 @@ export class FoldersComponent implements OnInit {
     this.folderService.getFolder(newFolderId).subscribe((newFolder) => {
       if (
         newFolder.folders
-          .map((folder: { name: any; }) => folder.name)
+          .map((folder) => folder.name)
           .includes(this.folder.name)
       ) {
         return;

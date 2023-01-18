@@ -82,7 +82,7 @@ h2 {
 
 .button {
   margin-top: 20px;
-  background-color: #eee;
+  background-color: rgb(50, 50, 50);
   padding: 1rem;
   border-radius: 4px;
   font-size: 1rem;

@@ -15,12 +15,12 @@ input {
 
 button {
   margin-top: 20px;
-  background-color: #eee;
+  background-color: rgb(50, 50, 50);
   padding: 1rem;
   border-radius: 4px;
   font-size: 1rem;
   margin-bottom: 20px;
-  margin-left: 0;
+  margin-left: 20px;
   margin-right: auto;
 }
 
@@ -44,20 +44,6 @@ button:disabled {
   display: flex;
   flex-direction: row;
   margin-left: 20px;
-}
-
-.left-button {
-  text-align: left;
-  position: relative;
-  left: 0;
-  margin-left: 0;
-}
-
-.right-button {
-  text-align: right;
-  position: relative;
-  right: 0;
-  margin-right: 0;
 }
 
 .mat-card {

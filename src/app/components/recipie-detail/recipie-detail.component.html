@@ -40,8 +40,10 @@
       </mat-card>
     </div>
     <div>
-      <button class="left-button" type="button" (click)="save()">Save</button>
-      <button class="right-button" type="button" (click)="goBack()">
+      <button type="button" (click)="save()" mat-button color="primary">
+        Save
+      </button>
+      <button type="button" (click)="goBack()" mat-button color="primary">
         Go back
       </button>
     </div>
@@ -57,7 +59,12 @@
         }}</mat-option>
       </mat-select>
     </mat-form-field>
-    <button type="button" (click)="moveToNewFolder(newFolder.value)">
+    <button
+      type="button"
+      (click)="moveToNewFolder(newFolder.value)"
+      mat-button
+      color="primary"
+    >
       Move
     </button>
   </mat-card>
